@@ -4,7 +4,7 @@ import (
 	InitStruct "Ymmersion2/backend"
 	InitTemp "Ymmersion2/temps"
 	"net/http"
-)
+) 
 
 func Accueil(w http.ResponseWriter, r *http.Request) {	
 	
