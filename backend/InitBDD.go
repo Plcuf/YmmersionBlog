@@ -8,7 +8,7 @@ import (
 
 func EditJSON(ModifiedArticle Article) {
 
-	modifiedJSON, errMarshal := json.MarshalIndent(ModifiedArticle, "", "    ")
+	modifiedJSON, errMarshal := json.Marshal(ModifiedArticle)
 	if errMarshal != nil {
 		fmt.Println("Error encodage ", errMarshal.Error())
 		return

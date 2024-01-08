@@ -3,14 +3,11 @@ package controller
 import (
 	InitStruct "Ymmersion2/backend"
 	InitTemp "Ymmersion2/temps"
-	"encoding/json"
-	"fmt"
-	"os"
 	"net/http"
 )
 
 func Accueil(w http.ResponseWriter, r *http.Request) {	
-	InitStruct.ReadJSON()
+	
 	InitTemp.Temp.ExecuteTemplate(w, "Accueil", nil)
 }
 
