@@ -1,0 +1,113 @@
+{
+    "jeux": [
+        {
+            "name": "Minecraft",
+            "article": [
+                {
+                    "section": {
+                        "title": "aa",
+                        "description": "bb",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                },
+                {
+                    "section": {
+                        "title": "ccc",
+                        "description": "",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                },
+                {
+                    "section": {
+                        "title": "",
+                        "description": "",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Geometry-Bash",
+            "article": [
+                {
+                    "section": {
+                        "title": "",
+                        "description": "",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                },
+                {
+                    "section": {
+                        "title": "",
+                        "description": "",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                },
+                {
+                    "section": {
+                        "title": "",
+                        "description": "",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                }
+            ]
+        },
+        {
+            "name": "GTA",
+            "article": [
+                {
+                    "section": {
+                        "title": "",
+                        "description": "",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                },
+                {
+                    "section": {
+                        "title": "",
+                        "description": "",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                },
+                {
+                    "section": {
+                        "title": "",
+                        "description": "",
+                        "author": "",
+                        "date_created": 0,
+                        "image": "",
+                        "id": 0
+                    }
+                }
+            ]
+        },
+        {
+            "name": "",
+            "article": null
+        }
+    ]
+}

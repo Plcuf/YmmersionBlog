@@ -12,9 +12,9 @@ func InitServe() {
 	http.HandleFunc("/", ctrl.Accueil)
 	http.HandleFunc("/jeu/detail", ctrl.Detail)
 	http.HandleFunc("/categorie", ctrl.Categorie)
-	http.HandleFunc("/search", ctrl.Search)
 	http.HandleFunc("/admin", ctrl.Admin)
 	http.HandleFunc("/add", ctrl.Add)
+	http.HandleFunc("/add/treatment", ctrl.InitAdd)
 	http.HandleFunc("/error", ctrl.Error)
 	
 	
