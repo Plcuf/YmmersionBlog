@@ -6,9 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
-	"time"
 )
-
 
 func EditJSON(ModifiedArticle []Article) {
 
@@ -37,6 +35,23 @@ func ReadJSON() ([]Article, error) {
 	return jsonData, err
 }
 
+func NbAleatoire(Liste []Article) []int {
+	liste := make([]int, 0, 10)
+	for len(liste) < 10 {
+		randomint := rand.Intn(len(Liste) - 1)
+		length := len(liste)
+		for i := 0; i < len(liste); i++ {
+			if randomint != liste[i] {
+				length -= 1
+			}
+		}
+		if length == 0 {
+			liste = append(liste, randomint)
+		}
+	}
+	return liste
+}
+
 func IsInList(lst []string, s string) bool { // on regarde si une lettre est dans la liste ou pas
 	for _, c := range lst {
 		if string(c) == s {
@@ -60,7 +75,7 @@ func Search(word string, s string) bool {
 	return strings.Contains(strings.ToLower(word), strings.ToLower(s))
 }
 
-func AddArticle(titre,contains,category,Author,Introduction,Image string,DateCreated int)  {
+func AddArticle(titre, contains, category, Author, Introduction, Image string, DateCreated int) {
 	var err error
 	LstArticles, err = ReadJSON()
 	if err != nil {
@@ -81,7 +96,7 @@ func AddArticle(titre,contains,category,Author,Introduction,Image string,DateCre
 
 }
 
-func NbAleatoire(Liste []Article) []int {
+func NbAleatoire(Liste []int) []int {
 	TailleMax := len(Liste)
 	rand.Seed(time.Now().UnixNano())
 	NouvelleListe := make([]int, 0, 10)

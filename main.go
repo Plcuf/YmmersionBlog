@@ -6,6 +6,8 @@ import (
 )
 
 func main() {
+
 	t.InitTemplate()
 	r.InitServe()
+
 }
