@@ -16,7 +16,7 @@ func InitServe() {
 	http.HandleFunc("/admin", ctrl.Admin)
 	http.HandleFunc("/add", ctrl.Add)
 	http.HandleFunc("/add/treatment", ctrl.InitAdd)
-	http.HandleFunc("/error", ctrl.Error)
+	http.HandleFunc("/error404", ctrl.Error)
 
 	rootDoc, _ := os.Getwd()
 	fileserver := http.FileServer(http.Dir(rootDoc + "/assets"))

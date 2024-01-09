@@ -22,7 +22,7 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 	for _, i := range lstId {
 		Recommandation = append(Recommandation, InitStruct.LstArticles[i])
 	}
-	InitTemp.Temp.ExecuteTemplate(w, "Accueil", Recommandation)
+	InitTemp.Temp.ExecuteTemplate(w, "index", Recommandation)
 }
 
 func Detail(w http.ResponseWriter, r *http.Request) {
@@ -41,6 +41,7 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 	InitTemp.Temp.ExecuteTemplate(w, "Detail", InitStruct.Section)
 }
 
+
 func Category(w http.ResponseWriter, r *http.Request) {
 	InitStruct.LstArticles, err = InitStruct.ReadJSON()
 	if err != nil {
@@ -49,7 +50,6 @@ func Category(w http.ResponseWriter, r *http.Request) {
 	}
 	queryCat := r.URL.Query().Get("category")
 	lstart := InitStruct.LstCategory(queryCat)
-	fmt.Println(lstart)
 	InitTemp.Temp.ExecuteTemplate(w, "Category", lstart)
 }
 
