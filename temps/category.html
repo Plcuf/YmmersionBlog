@@ -1,3 +1,4 @@
+{{define "Category"}}
 <!DOCTYPE htlm>
 <html>
     <head>
@@ -30,110 +31,22 @@
             <img src="../../assets/img/GeometryDashLogo.png" alt="geometry dash logo">
             <div class="gameinfo">
                 <h1> Geometry Dash </h1>
-                <p>2013</p>
+                <p> 2013 </p>
             </div>
         </div>
         <div class="articles">
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
+            {{range .}}
+                <a class="article">
+                    <img src="../../assets/img/{{.Image}}">
+                    <div class="articletext">
+                        <h6> {{.Title}} </h6>
+                        <div class="namedate">
+                            <p> {{.Author}} -</p>
+                            <p>&nbsp;{{.DateCreated}} </p>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
-            <a class="article">
-                <img src="../../assets/img/blogtest.jpg">
-                <div class="articletext">
-                    <h6> Le plus gros drama du jeu </h6>
-                    <div class="namedate">
-                        <p> Kevin -</p>
-                        <p>&nbsp;2010 </p>
-                    </div>
-                </div>
-            </a>
+                </a>
+            {{end}}
         </div>
         <footer>
             <div class="namerights">
@@ -151,3 +64,4 @@
         </footer>
     </body>
 </html>
+{{end}}
