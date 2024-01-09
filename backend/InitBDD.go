@@ -85,7 +85,17 @@ func AddArticle(titre, contains, category, Author, Introduction, Image string, D
 
 	Section.Category = category
 	Section.Title = titre
-	Section.Id = string(len(LstArticles) + 1)
+	if !IdAlreadyExists(len(LstArticles) + 1) {
+		Section.Id = string(len(LstArticles) + 1)
+	} else {
+		Section.Id = string(LstIDSuppr[0])
+		if len(LstIDSuppr)>1{
+			LstIDSuppr = LstIDSuppr[1:]
+		}else{
+			LstIDSuppr = []int{}
+		}
+	}
+
 	Section.Description = contains
 	Section.Author = Author
 	Section.Introduction = Introduction

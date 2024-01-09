@@ -21,3 +21,4 @@ type Client struct {
 var Section Article
 var LstArticles []Article
 var User Client
+var LstIDSuppr []int
