@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"time"
 )
 
 var Liste = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}
@@ -37,19 +36,19 @@ func ReadJSON() (Article, error) {
 	return jsonData, err
 }
 
-func NbAleatoire(Liste []int) []int {
-	TailleMax := len(Liste)
-
-	rand.Seed(time.Now().UnixNano())
-
-	NouvelleListe := make([]int, 0, 10)
-
-	for i := 0; i < 10; i++ {
-		nombreAleatoire := rand.Intn(TailleMax)
-		NouvelleListe = append(NouvelleListe, Liste[nombreAleatoire])
+func NbAleatoire(Liste []Article) []int {
+	liste := make([]int, 0, 10)
+	for len(liste) < 10 {
+		randomint := rand.Intn(len(Liste) - 1)
+		length := len(liste)
+		for i := 0; i < len(liste); i++ {
+			if randomint != liste[i] {
+				length -= 1
+			}
+		}
+		if length == 0 {
+			liste = append(liste, randomint)
+		}
 	}
-
-	fmt.Println(NouvelleListe)
-
-	return NouvelleListe
+	return liste
 }

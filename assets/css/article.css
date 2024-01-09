@@ -135,11 +135,15 @@ footer {
 }
 
 .article {
+    max-width: 60vw;
     color: #F6F6F6;
     margin-top: 10%;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    padding: 3vw;
+    border-radius: 15px;
+    background-color: #2C2F35;
 }
 
 .articlehead {
@@ -149,8 +153,9 @@ footer {
     align-items: center;
     font-family: sanchez;
     padding: 3vw;
+    padding-top: 0vw;
     padding-bottom: 1vw;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid #ff1030;
     border-radius: 25px;
 
 }
@@ -171,8 +176,12 @@ footer {
     font-size: 25px;
 }
 
-
-
 .articlehead img {
     max-width: 15vw;
+}
+
+.article .introduction {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-style: italic;
 }

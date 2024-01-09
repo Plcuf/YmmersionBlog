@@ -2,6 +2,7 @@ package main
 
 import (
 	b "Ymmersion2/backend"
+	"fmt"
 )
 
 func main() {
@@ -10,5 +11,5 @@ func main() {
 	// r.InitServe()
 
 	// Appeler la fonction NbAleatoire avec la liste
-	b.NbAleatoire(b.Liste)
+	fmt.Println(b.NbAleatoire(b.Liste))
 }
