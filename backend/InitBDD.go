@@ -96,18 +96,7 @@ func AddArticle(titre, contains, category, Author, Introduction, Image string, D
 
 }
 
-func NbAleatoire(Liste []int) []int {
-	TailleMax := len(Liste)
-	rand.Seed(time.Now().UnixNano())
-	NouvelleListe := make([]int, 0, 10)
-	for i := 0; i < 10; i++ {
-		nombreAleatoire := rand.Intn(TailleMax)
-		NouvelleListe = append(NouvelleListe, Liste[nombreAleatoire])
-	}
 
-
-	return NouvelleListe
-}
 
 func IdAlreadyExists(nb int) bool{
 	for i := 0; i <len(LstArticles); i++{
