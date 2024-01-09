@@ -10,7 +10,7 @@ import (
 )
 
 
-func EditJSON(ModifiedArticle Article) {
+func EditJSON(ModifiedArticle []Article) {
 
 	modifiedJSON, errMarshal := json.Marshal(ModifiedArticle)
 	if errMarshal != nil {
@@ -67,21 +67,21 @@ func AddArticle(titre,contains,category,Author,Introduction,Image string,DateCre
 		fmt.Println("Error encodage ", err.Error())
 		os.Exit(1)
 	}
-	var article Article
-	article.Category = category
-	article.Title = titre
-	article.Id = len(LstArticles) + 1
-	article.Description = contains
-	article.Author = Author
-	article.Introduction = Introduction
-	article.DateCreated = DateCreated
-	article.Image = Image
-	LstArticles = append(LstArticles,article)
+
+	Section.Category = category
+	Section.Title = titre
+	Section.Id = len(LstArticles) + 1
+	Section.Description = contains
+	Section.Author = Author
+	Section.Introduction = Introduction
+	Section.DateCreated = DateCreated
+	Section.Image = Image
+	LstArticles = append(LstArticles,Section)
 	EditJSON(LstArticles)
 
 }
 
-func NbAleatoire(Liste []int) []int {
+func NbAleatoire(Liste []Article) []int {
 	TailleMax := len(Liste)
 	rand.Seed(time.Now().UnixNano())
 	NouvelleListe := make([]int, 0, 10)
@@ -92,4 +92,13 @@ func NbAleatoire(Liste []int) []int {
 
 
 	return NouvelleListe
+}
+
+func IdAlreadyExists(nb int) bool{
+	for i := 0; i <len(LstArticles); i++{
+		if LstArticles[i].Id == nb {
+			return true
+		}
+	}
+	return false
 }

@@ -5,31 +5,75 @@ import (
 	InitTemp "Ymmersion2/temps"
 	"fmt"
 	"net/http"
+	"os"
 )
 
+var err error
+
 func Accueil(w http.ResponseWriter, r *http.Request) {
-	var err error
-	InitStruct.LstArticles, err = InitStruct.ReadJSON()
-	//fmt.Println(InitStruct.LstArticles)
+	var lstId []int
+	var Recommandation []Article
+	InitStruct.LstArticles, err = ReadJSON()
 	if err != nil {
 		fmt.Println("Error encodage ", err.Error())
-		return
+		os.Exit(1)
 	}
-	//InitStruct.EditJSON(InitStruct.LstArticles)
-	fmt.Println(InitStruct.LstCategory("GTA"))
-	InitTemp.Temp.ExecuteTemplate(w, "Accueil", nil)
+	lstId = InitStruct.NbAleatoire(InitStruct.LstArticles)
+	for _, i := range lstId {
+		Recommandation = append(Recommandation, LstArticles[i])
+	}
+	InitTemp.Temp.ExecuteTemplate(w, "Accueil", Recommandation)
 }
 
 func Detail(w http.ResponseWriter, r *http.Request) {
-
-	InitTemp.Temp.ExecuteTemplate(w, "Detail", nil)
+	InitStruct.LstArticles, err = ReadJSON()
+	if err != nil {
+		fmt.Println("Error encodage ", err.Error())
+		os.Exit(1)
+	}
+	queryID := r.URL.Query().Get("id")
+	for _, i := range InitStruct.LstArticles {
+		if i.Id == queryID {
+			InitStruct.Section = i
+			break
+		}
+	}
+	InitTemp.Temp.ExecuteTemplate(w, "Detail", InitStruct.Section)
 }
 
 func Categorie(w http.ResponseWriter, r *http.Request) {
-	InitTemp.Temp.ExecuteTemplate(w, "Categorie", nil)
+	InitStruct.LstArticles, err = ReadJSON()
+	if err != nil {
+		fmt.Println("Error encodage ", err.Error())
+		os.Exit(1)
+	}
+	queryCat := r.URL.Query().Get("category")
+	lstart := InitStruct.LstCategory(queryCat)
+	InitTemp.Temp.ExecuteTemplate(w, "Categorie", lstart)
+}
+
+func Search(w http.ResponseWriter, r *http.Request) {
+	InitStruct.LstArticles, err = ReadJSON()
+	if err != nil {
+		fmt.Println("Error encodage ", err.Error())
+		os.Exit(1)
+	}
+	queryTitle := r.URL.Query().Get("title")
+	var lstSearch []InitStruct.Article
+	for _, c := range InitStruct.LstArticles {
+		if InitStruct.Search(c, queryTitle) {
+			lstSearch = append(lstSearch,c)
+		}
+	}
+	InitTemp.Temp.ExecuteTemplate(w, "Search", lstSearch)
 }
 
 func Add(w http.ResponseWriter, r *http.Request) {
+	InitStruct.LstArticles, err = ReadJSON()
+	if err != nil {
+		fmt.Println("Error encodage ", err.Error())
+		os.Exit(1)
+	}
 	InitTemp.Temp.ExecuteTemplate(w, "Add", nil)
 }
 
