@@ -3,11 +3,14 @@ package backend
 import (
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
-func EditJSON(ModifiedArticle []Article) {
+
+func EditJSON(ModifiedArticle Article) {
 
 	modifiedJSON, errMarshal := json.Marshal(ModifiedArticle)
 	if errMarshal != nil {
@@ -76,4 +79,16 @@ func AddArticle(titre,contains,category,Author,Introduction,Image string,DateCre
 	LstArticles = append(LstArticles,article)
 	EditJSON(LstArticles)
 
+}
+func NbAleatoire(Liste []int) []int {
+	TailleMax := len(Liste)
+	rand.Seed(time.Now().UnixNano())
+	NouvelleListe := make([]int, 0, 10)
+	for i := 0; i < 10; i++ {
+		nombreAleatoire := rand.Intn(TailleMax)
+		NouvelleListe = append(NouvelleListe, Liste[nombreAleatoire])
+	}
+
+
+	return NouvelleListe
 }
