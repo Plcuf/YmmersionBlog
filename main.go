@@ -1,12 +1,11 @@
 package main
 
 import (
-	b "Ymmersion2/backend"
+	r "Ymmersion2/routeur"
+	t "Ymmersion2/temps"
 )
 
 func main() {
-	// t.InitTemplate()
-	// r.InitServe()
-	b.AddArticle("titre", "contains", "category", "Author", "Introduction", "Image", 2024)
-
+	t.InitTemplate()
+	r.InitServe()
 }

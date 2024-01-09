@@ -80,6 +80,7 @@ func AddArticle(titre,contains,category,Author,Introduction,Image string,DateCre
 	EditJSON(LstArticles)
 
 }
+
 func NbAleatoire(Liste []int) []int {
 	TailleMax := len(Liste)
 	rand.Seed(time.Now().UnixNano())
