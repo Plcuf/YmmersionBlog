@@ -1,21 +1,14 @@
 package backend
 
 type Article struct {
-	Jeux []struct {
-		Name string `json:"name"`
-		Article []Section `json:"article"`
-	} `json:"jeux"`
-}
-
-type Section struct {
-	Section struct {
-		Title       string `json:"title"`
-		Description string `json:"description"`
-		Author      string `json:"author"`
-		DateCreated int64  `json:"date_created"`
-		Image       string `json:"image"`
-		Id          int64  `json:"id"`
-	} `json:"section"`
+	Title        string `json:"title"`
+	Id           int    `json:"id"`
+	Description  string `json:"description"`
+	Category     string `json:"category"`
+	Author       string `json:"author"`
+	Introduction string `json:"introduction"`
+	DateCreated  int    `json:"date_created"`
+	Image        string `json:"image"`
 }
 
 type Client struct {
@@ -25,6 +18,6 @@ type Client struct {
 	Url   string
 }
 
-var Articles Article
-var lstArticles = []Section{}
+var Section Article
+var LstArticles []Article
 var User Client
