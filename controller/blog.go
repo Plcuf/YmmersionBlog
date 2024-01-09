@@ -3,23 +3,22 @@ package controller
 import (
 	InitStruct "Ymmersion2/backend"
 	InitTemp "Ymmersion2/temps"
-	"net/http"
 	"fmt"
+	"net/http"
 )
 
-func Accueil(w http.ResponseWriter, r *http.Request) {	
+func Accueil(w http.ResponseWriter, r *http.Request) {
 	var err error
-	InitStruct.Articles, err = InitStruct.ReadJSON()
+	InitStruct.LstArticles, err = InitStruct.ReadJSON()
+	//fmt.Println(InitStruct.LstArticles)
 	if err != nil {
 		fmt.Println("Error encodage ", err.Error())
 		return
 	}
-	InitStruct.Articles.Jeux[0].Name = "caca"
-	InitStruct.EditJSON(InitStruct.Articles)
+	//InitStruct.EditJSON(InitStruct.LstArticles)
+	fmt.Println(InitStruct.LstCategory("GTA"))
 	InitTemp.Temp.ExecuteTemplate(w, "Accueil", nil)
 }
-
-
 
 func Detail(w http.ResponseWriter, r *http.Request) {
 

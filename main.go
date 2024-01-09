@@ -1,15 +1,13 @@
 package main
 
 import (
-	b "Ymmersion2/backend"
-	"fmt"
+	r "Ymmersion2/routeur"
+	t "Ymmersion2/temps"
 )
 
 func main() {
 
-	// t.InitTemplate()
-	// r.InitServe()
+	t.InitTemplate()
+	r.InitServe()
 
-	// Appeler la fonction NbAleatoire avec la liste
-	fmt.Println(b.NbAleatoire(b.Liste))
 }
