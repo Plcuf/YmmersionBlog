@@ -85,22 +85,20 @@ func AddArticle(titre, contains, category, Author, Introduction, Image string, D
 
 	Section.Category = category
 	Section.Title = titre
-	Section.Id = len(LstArticles) + 1
+	Section.Id = string(len(LstArticles) + 1)
 	Section.Description = contains
 	Section.Author = Author
 	Section.Introduction = Introduction
 	Section.DateCreated = DateCreated
 	Section.Image = Image
-	LstArticles = append(LstArticles,Section)
+	LstArticles = append(LstArticles, Section)
 	EditJSON(LstArticles)
 
 }
 
-
-
-func IdAlreadyExists(nb int) bool{
-	for i := 0; i <len(LstArticles); i++{
-		if LstArticles[i].Id == nb {
+func IdAlreadyExists(nb int) bool {
+	for i := 0; i < len(LstArticles); i++ {
+		if LstArticles[i].Id == string(nb) {
 			return true
 		}
 	}

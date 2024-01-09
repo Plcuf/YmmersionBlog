@@ -11,14 +11,13 @@ func InitServe() {
 
 	http.HandleFunc("/", ctrl.Accueil)
 	http.HandleFunc("/jeu/detail", ctrl.Detail)
-	http.HandleFunc("/categorie", ctrl.Categorie)
+	http.HandleFunc("/category", ctrl.Category)
 	http.HandleFunc("/search", ctrl.Search)
 	http.HandleFunc("/admin", ctrl.Admin)
 	http.HandleFunc("/add", ctrl.Add)
 	http.HandleFunc("/add/treatment", ctrl.InitAdd)
 	http.HandleFunc("/error", ctrl.Error)
-	
-	
+
 	rootDoc, _ := os.Getwd()
 	fileserver := http.FileServer(http.Dir(rootDoc + "/assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileserver))
