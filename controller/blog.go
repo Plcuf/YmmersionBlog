@@ -49,7 +49,6 @@ func Category(w http.ResponseWriter, r *http.Request) {
 	}
 	queryCat := r.URL.Query().Get("category")
 	lstart := InitStruct.LstCategory(queryCat)
-	fmt.Println(lstart)
 	InitTemp.Temp.ExecuteTemplate(w, "Category", lstart)
 }
 
