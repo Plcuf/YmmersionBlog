@@ -2,12 +2,12 @@ package backend
 
 type Article struct {
 	Title        string `json:"title"`
-	Id           string `json:"id"`
+	Id           int    `json:"id"`
 	Description  string `json:"description"`
 	Category     string `json:"category"`
 	Author       string `json:"author"`
 	Introduction string `json:"introduction"`
-	DateCreated  int    `json:"date_created"`
+	DateCreated  string `json:"date_created"`
 	Image        string `json:"image"`
 }
 

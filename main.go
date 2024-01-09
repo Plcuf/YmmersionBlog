@@ -5,6 +5,8 @@ import (
 	t "Ymmersion2/temps"
 )
 
+var err error
+
 func main() {
 
 	t.InitTemplate()

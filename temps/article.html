@@ -21,10 +21,12 @@
                     <a href="http://localhost:8080/category?category=GTA" class="cat"> GTA </a>
                 </div>
                 <div class="searchbar">
-                    <input type="text" placeholder="Search...">
-                    <submit class="icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </submit>
+                    <form action="/search" method="get">
+                        <input class="input" type="search" name="title" placeholder="Rechercher" />
+                        <button type="submit" class="icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </header>

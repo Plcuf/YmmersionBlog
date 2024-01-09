@@ -75,42 +75,25 @@ func Search(word string, s string) bool {
 	return strings.Contains(strings.ToLower(word), strings.ToLower(s))
 }
 
-func AddArticle(titre, contains, category, Author, Introduction, Image string, DateCreated int) {
-	var err error
-	LstArticles, err = ReadJSON()
-	if err != nil {
-		fmt.Println("Error encodage ", err.Error())
-		os.Exit(1)
-	}
-
-	Section.Category = category
-	Section.Title = titre
-	if !IdAlreadyExists(len(LstArticles) + 1) {
-		Section.Id = string(len(LstArticles) + 1)
-	} else {
-		Section.Id = string(LstIDSuppr[0])
-		if len(LstIDSuppr)>1{
-			LstIDSuppr = LstIDSuppr[1:]
-		}else{
-			LstIDSuppr = []int{}
-		}
-	}
-
-	Section.Description = contains
-	Section.Author = Author
-	Section.Introduction = Introduction
-	Section.DateCreated = DateCreated
-	Section.Image = Image
-	LstArticles = append(LstArticles, Section)
-	EditJSON(LstArticles)
-
-}
-
 func IdAlreadyExists(nb int) bool {
 	for i := 0; i < len(LstArticles); i++ {
-		if LstArticles[i].Id == string(nb) {
+		if LstArticles[i].Id == nb {
 			return true
 		}
 	}
 	return false
+}
+
+func GenerateID() int {
+	if !IdAlreadyExists(len(LstArticles) + 1) {
+		return len(LstArticles) + 1
+	} else {
+		t := LstIDSuppr[0]
+		if len(LstIDSuppr) > 1 {
+			LstIDSuppr = LstIDSuppr[1:]
+		} else {
+			LstIDSuppr = []int{}
+		}
+		return t
+	}
 }

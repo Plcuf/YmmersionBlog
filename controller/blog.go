@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 var err error
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
-
 	var lstId []int
 	var Recommandation []InitStruct.Article
 	InitStruct.LstArticles, err = InitStruct.ReadJSON()
@@ -32,7 +32,11 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error encodage ", err.Error())
 		os.Exit(1)
 	}
-	queryID := r.URL.Query().Get("id")
+	queryID, errId := strconv.Atoi(r.URL.Query().Get("id"))
+	if errId != nil {
+		fmt.Println("Error ID ", errId.Error())
+		os.Exit(1)
+	}
 	for _, i := range InitStruct.LstArticles {
 		if i.Id == queryID {
 			InitStruct.Section = i
@@ -67,15 +71,6 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	InitTemp.Temp.ExecuteTemplate(w, "Search", lstSearch)
-}
-
-func Add(w http.ResponseWriter, r *http.Request) {
-	InitStruct.LstArticles, err = InitStruct.ReadJSON()
-	if err != nil {
-		fmt.Println("Error encodage ", err.Error())
-		os.Exit(1)
-	}
-	InitTemp.Temp.ExecuteTemplate(w, "Add", nil)
 }
 
 func InitAdd(w http.ResponseWriter, r *http.Request) {

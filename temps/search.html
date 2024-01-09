@@ -1,0 +1,49 @@
+{{define "Search"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche</title>
+</head>
+<body>
+    <header>
+        <div class="title">
+            <h1> Ymmersions </h1>
+        </div>
+        <div class="divider">
+            <div class="categories">
+                <a href="http://localhost:8080/category?category=Minecraft" class="cat"> Minecraft </a>
+                <a href="http://localhost:8080/category?category=Geometry-Dash" class="cat"> Geometry Dash </a>
+                <a href="http://localhost:8080/category?category=GTA" class="cat"> GTA </a>
+            </div>
+            <div class="searchbar">
+                <form action="/search" method="get">
+                    <input class="input" type="search" name="title" placeholder="Rechercher" />
+                    <button type="submit" class="icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+    {{range .}}
+        {{.Title}}
+    {{end}}
+    <footer>
+        <div class="namerights">
+            <h4> Ymmersions </h4>
+            <p> © 2024 Ymmersions. Tous droits réservés. </p>
+        </div>
+        <div class="links">
+            <a href="#">
+                Page d'Explications    
+            </a>
+            <p>
+                Dante / Bellais / Carre / Sanchez
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
+{{end}}

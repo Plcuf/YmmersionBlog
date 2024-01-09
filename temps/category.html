@@ -20,26 +20,29 @@
                     <a href="http://localhost:8080/category?category=GTA" class="cat"> GTA </a>
                 </div>
                 <div class="searchbar">
-                    <form action="http://localhost:8080/Search" method="get">
-                        <input type="text" placeholder="Search...">
+                    <form action="/search" method="get">
+                        <input class="input" type="search" name="title" placeholder="Rechercher" />
+                        <button type="submit" class="icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
                     </form>
-                    <submit class="icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </submit>
                 </div>
             </div>
         </header>
         <div class="banner">
-            <img src="../../assets/img/GeometryDashLogo.png" alt="geometry dash logo">
+            <img src="../static/img/GeometryDashLogo.png" alt="geometry dash logo">
             <div class="gameinfo">
+                {{range .}}
                 <h1> {{.Category}} </h1>
+                {{break}}
+                {{end}}
                 <p> 2013 </p>
             </div>
         </div>
         <div class="articles">
             {{range .}}
                 <a class="article">
-                    <img src="../../assets/img/{{.Image}}">
+                    <img src="../static/img/{{.Image}}">
                     <div class="articletext">
                         <h6> {{.Title}} </h6>
                         <div class="namedate">
