@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func EditJSON(ModifiedArticle Article) {
+func EditJSON(ModifiedArticle []Article) {
 
 	modifiedJSON, errMarshal := json.Marshal(ModifiedArticle)
 	if errMarshal != nil {
