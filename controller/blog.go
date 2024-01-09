@@ -11,6 +11,7 @@ import (
 var err error
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
+
 	var lstId []int
 	var Recommandation []InitStruct.Article
 	InitStruct.LstArticles, err = InitStruct.ReadJSON()
@@ -40,7 +41,6 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 	}
 	InitTemp.Temp.ExecuteTemplate(w, "Detail", InitStruct.Section)
 }
-
 
 func Category(w http.ResponseWriter, r *http.Request) {
 	InitStruct.LstArticles, err = InitStruct.ReadJSON()
