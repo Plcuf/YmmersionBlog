@@ -10,7 +10,6 @@ import (
 func InitServe() {
 
 	http.HandleFunc("/", ctrl.Accueil)
-	http.HandleFunc("/treatment", ctrl.InitAccueil)
 	http.HandleFunc("/jeu/detail", ctrl.Detail)
 	http.HandleFunc("/categorie", ctrl.Categorie)
 	http.HandleFunc("/search", ctrl.Search)
