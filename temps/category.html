@@ -20,6 +20,7 @@
                     <a href="http://localhost:8080/category?category=GTA" class="cat"> GTA </a>
                 </div>
                 <div class="searchbar">
+                    <form action="http://foo.com" method="get"></form>
                     <input type="text" placeholder="Search...">
                     <submit class="icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -30,7 +31,7 @@
         <div class="banner">
             <img src="../../assets/img/GeometryDashLogo.png" alt="geometry dash logo">
             <div class="gameinfo">
-                <h1> Geometry Dash </h1>
+                <h1> {{.Category}} </h1>
                 <p> 2013 </p>
             </div>
         </div>
