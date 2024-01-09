@@ -3,8 +3,12 @@ package backend
 import (
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"os"
+	"time"
 )
+
+var Liste = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}
 
 func EditJSON(ModifiedArticle Article) {
 
@@ -31,4 +35,21 @@ func ReadJSON() (Article, error) {
 	var jsonData Article
 	err = json.Unmarshal(jsonFile, &jsonData)
 	return jsonData, err
+}
+
+func NbAleatoire(Liste []int) []int {
+	TailleMax := len(Liste)
+
+	rand.Seed(time.Now().UnixNano())
+
+	NouvelleListe := make([]int, 0, 10)
+
+	for i := 0; i < 10; i++ {
+		nombreAleatoire := rand.Intn(TailleMax)
+		NouvelleListe = append(NouvelleListe, Liste[nombreAleatoire])
+	}
+
+	fmt.Println(NouvelleListe)
+
+	return NouvelleListe
 }
