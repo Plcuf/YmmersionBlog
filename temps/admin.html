@@ -51,7 +51,9 @@
         </header>
         <div class="articles">
             <a href="http://localhost:8080/add">Ajoute un article</a>
+
             {{range .Articles}}
+            <a href="http://localhost:8080/suppr?id={{.Id}}">suppr</a>
             <a href="http://localhost:8080/jeu/detail?id={{.Id}}" class="article">
                 <img src="../static/img/{{.Image}}">
                 <div class="articletext">

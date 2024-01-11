@@ -51,7 +51,7 @@
         </header>
         <main>
             <a href="{{.User.Url}}" class="cat"> fermer </a>
-            <form class="form" action="/add/treatment" method="POST">
+            <form class="form" action="/add/treatment" method="POST" enctype="multipart/form-data">
                 <label for="category">Choissisez votre catégorie:</label>
                 <select name="category" id="category">
                 <option value="Minecraft">Minecraft</option>
@@ -59,13 +59,13 @@
                 <option value="GTA">GTA</option>
                 </select>
                 <label for="titre">Saisissez le titre</label>
-                <input type="text" name="titre" id="titre" autofocus>
+                <input type="text" name="titre" id="titre"required autofocus>
                 <label for="Introduction">Introduction</label>
                 <input type="text" name="Introduction" id="Introduction" >
                 <label for="contains">Description</label>
-                <input type="text" name="contains" id="contains" >
+                <input type="text" name="contains" id="contains"required >
                 <label for="Author">Votre nom</label>
-                <input type="text" name="Author" id="Author" >
+                <input type="text" name="Author" id="Author"required >
                 <label for="Image">La photo du blog</label>
                 <input type="file" name="Image" id="Image" >
                 <button class="bouton" type="submit">Valider</button>

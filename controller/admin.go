@@ -50,8 +50,6 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error encodage ", err.Error())
 		os.Exit(1)
 	}
-	//Prend les données ne dépassant cette taille (pout l'image)
-	r.ParseMultipartForm(10 << 20)
 
 	//Prend les valeurs demandés
 	InitStruct.Section.Category = r.FormValue("category")
@@ -61,10 +59,16 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Section.Author = r.FormValue("Author")
 	InitStruct.Section.Introduction = r.FormValue("Introduction")
 	InitStruct.Section.DateCreated = time.Now().Format("2006-01-02")
-
-	file, handler, err := r.FormFile("Image") //Récupère le fichier image
+	//Prend les données ne dépassant cette taille (pout l'image)
+	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	file, handler, errFile := r.FormFile("Image") //Récupère le fichier image
+	if errFile != nil {
+		http.Error(w, errFile.Error(), http.StatusInternalServerError)
 		return
 	}
 	defer file.Close()
@@ -73,6 +77,7 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 	f, _ := os.Create(filepath)
 	defer f.Close()
 	io.Copy(f, file) //Met l'image au chemin donnée
+	//je ne met pas dans ma struct
 
 	InitStruct.LstArticles = append(InitStruct.LstArticles, InitStruct.Section)
 	InitStruct.EditJSON(InitStruct.LstArticles) //Met les données dans le JSON
@@ -94,6 +99,8 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error ID ", err.Error())
 		os.Exit(1)
 	}
+	fmt.Println("ajnda")
+	queryID--
 	for _, c := range InitStruct.LstArticles {
 		if c.Id == queryID {
 			InitStruct.LstArticles = append(InitStruct.LstArticles[:queryID], InitStruct.LstArticles[queryID+1:]...) //Supprime de la liste des blogs
