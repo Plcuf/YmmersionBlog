@@ -37,6 +37,13 @@ header {
     border-bottom: 2px solid #ff1030;
 }
 
+header .logo {
+    width: 8vw;
+    margin-left: 3vw;
+    margin-right: 2vw;
+    filter: invert(1) hue-rotate(227deg) contrast(5);
+}
+
 header h1 a {
     color: #F6F6F6;
 }
@@ -260,4 +267,10 @@ footer {
 
 div.articles>a.article:hover {
     transform: scale(1.05, 1.01);
+}
+
+
+.connect p {
+    font-family: sanchez;
+    margin-right: 1vw;
 }
