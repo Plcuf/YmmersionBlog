@@ -19,7 +19,8 @@ var err error
 
 // Fonction pour les admins
 func Admin(w http.ResponseWriter, r *http.Request) {
-	if !InitStruct.User.Admin { //Securisation de la route
+	fmt.Println("admin", InitStruct.Back.User)
+	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}
 	InitStruct.Back.Articles, err = InitStruct.ReadJSON() //Met le fichier JSON dans ma struct
@@ -32,7 +33,8 @@ func Admin(w http.ResponseWriter, r *http.Request) {
 
 // Fonction pour ajouter un blog
 func Add(w http.ResponseWriter, r *http.Request) {
-	if !InitStruct.User.Admin { //Securisation de la route
+	fmt.Println("add", InitStruct.Back.User.Admin)
+	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}
 	InitTemp.Temp.ExecuteTemplate(w, "Add", nil)
@@ -40,7 +42,7 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 // Fonction treatment de l'ajout de blog
 func InitAdd(w http.ResponseWriter, r *http.Request) {
-	if !InitStruct.User.Admin { //Securisation de la route
+	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}
 	InitStruct.LstArticles, err = InitStruct.ReadJSON() //Met le fichier JSON dans ma struct
@@ -79,7 +81,7 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 
 // Fonction pour supprimer un blog
 func Suppr(w http.ResponseWriter, r *http.Request) {
-	if !InitStruct.User.Admin { //Securisation de la route
+	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}
 	InitStruct.LstArticles, err = InitStruct.ReadJSON() //Met le fichier JSON dans ma struct
@@ -144,17 +146,17 @@ func InitLogin(w http.ResponseWriter, r *http.Request) {
 	for _, c := range InitStruct.LstUser {
 		if InitStruct.User.Name == c.Name {
 			if InitStruct.User.Mdp == c.Mdp {
-				InitStruct.User.Admin = c.Admin    //Lui met ses droits
 				InitStruct.UserData.Connect = true //Le connecte
 				InitStruct.Back.UserData = InitStruct.UserData
-				InitStruct.Back.User = InitStruct.User
-				http.Redirect(w, r, "/index", http.StatusMovedPermanently)
+				InitStruct.Back.User = c //Lui met ses droits
+				fmt.Println("damin", InitStruct.Back.UserData.Url)
+				http.Redirect(w, r, InitStruct.Back.UserData.Url, http.StatusMovedPermanently)
 				return
 			}
 		}
 	}
 	//Sinon reste sur la page login
-	http.Redirect(w, r, InitStruct.Back.UserData.Url, http.StatusMovedPermanently)
+	http.Redirect(w, r, "/login", http.StatusMovedPermanently)
 }
 
 // Fonction treatment pour se connecter

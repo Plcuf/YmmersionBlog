@@ -9,7 +9,6 @@ import (
 	"strconv"
 )
 
-
 // Fonction de la page index pour avoir les recommandations aléatoires
 func Accueil(w http.ResponseWriter, r *http.Request) {
 	var lstId []int //Liste des Id des blogs utilisé dans la recommandation
@@ -28,6 +27,7 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 	InitStruct.UserData.Url = r.URL.String() //Pour savoir où je me situe
 	InitStruct.Back.Articles = Recommandation
 	//execution du templates index.html
+	fmt.Println("index", InitStruct.Back.User)
 	InitTemp.Temp.ExecuteTemplate(w, "index", InitStruct.Back)
 }
 

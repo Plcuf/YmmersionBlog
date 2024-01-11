@@ -1,7 +1,1 @@
-[
-    {
-        "Name": "Ymmersion2",
-	    "Mdp" : "3741697c94deb4a5a9afa259094d4a58e6d84202de2aa773c368e6d62ee89149" ,
-	    "Admin" : true
-    }
-]
+[{"name":"Ymmersion2","mdp":"3741697c94deb4a5a9afa259094d4a58e6d84202de2aa773c368e6d62ee89149","admin":true},{"name":"","mdp":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","admin":false}]
