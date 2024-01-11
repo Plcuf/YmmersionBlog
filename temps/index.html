@@ -11,19 +11,21 @@
     </head>
     <body>
         <header>
-            <div class="title">
-                <i class="fa-solid fa-pen-fancy fa-2xl"></i>
-                <h1> Ymmersions </h1>
-            </div>
-            <div class="divider">
+            <div class="ticat">
+                <div class="title">
+                    <i class="fa-solid fa-pen-fancy fa-2xl"></i>
+                    <h1> Ymmersions </h1>
+                </div>
                 <div class="categories">
-                    <a href="http://localhost:8080/category?category=Minecraft" class="cat"> Minecraft </a>
+                <a href="http://localhost:8080/category?category=Minecraft" class="cat"> Minecraft </a>
                     <a href="http://localhost:8080/category?category=Geometry-Dash" class="cat"> Geometry Dash </a>
                     <a href="http://localhost:8080/category?category=GTA" class="cat"> GTA </a>
                     {{if .User.Admin }}
                         <a href="http://localhost:8080/admin" class="cat"> Admin </a>
                     {{end}}
                 </div>
+            </div>
+            <div class="divider">
                 <div class="searchbar">
                     <form action="/search" method="get">
                         <input class="input" type="search" name="title" placeholder="Rechercher" />
@@ -41,10 +43,9 @@
                 {{else}}
                 <div class="connect">
                     <a href="http://localhost:8080/login" class="cat">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user fa-xl"></i>
                     </a>
                 </div>
-                {{end}}
             </div>
         </header>
         <div class="articles">
