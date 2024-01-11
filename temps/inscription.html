@@ -33,13 +33,26 @@
         </header>
         <main>
             <a href="{{.UserData.Url}}" class="cat"> fermer </a>
-            <form class="form" action="/inscription/treatment" method="POST">
-                <label for="Nom">Saisissez votre Identifiant</label>
-                <input type="text" name="Nom" id="Nom" autofocus>
-                <label for="Mdp">Mot de passe</label>
-                <input type="password" name="Mdp" id="Mdp" >
-                <button class="bouton" type="submit">Valider</button>
-            </form>
+            <div class="content-container">
+                <div class="form-container">
+                    <h2 class="form-title">S'inscrire</h2>
+                    <form method="post" action="/inscription/treatment" class="form">
+                        <div class="form-group">
+                            <label for="Nom" class="form-label">Nom d'utilisateur:</label>
+                            <input type="text" id="Nom" name="Nom" class="form-input" autofocus required>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="Mdp" class="form-label">Mot de passe:</label>
+                            <input type="password" id="Mdp" name="Mdp" class="form-input" required>
+                        </div>
+        
+                        <div class="form-group">
+                            <input type="submit" class="form-button" value="S'inscrire">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </main>
         <footer>
             <div class="namerights">

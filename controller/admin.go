@@ -44,6 +44,7 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error encodage ", err.Error())
 		os.Exit(1)
 	}
+	r.ParseMultipartForm(10 << 20)
 
 	InitStruct.Section.Category = r.FormValue("category")
 	InitStruct.Section.Title = r.FormValue("titre")
@@ -52,7 +53,19 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Section.Author = r.FormValue("Author")
 	InitStruct.Section.Introduction = r.FormValue("Introduction")
 	InitStruct.Section.DateCreated = time.Now().Format("2006-01-02")
-	InitStruct.Section.Image = r.FormValue("Image")
+
+	file, handler, err := r.FormFile("Image")
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    defer file.Close()
+
+    filepath := "./assets/images/" + handler.Filename
+    f, _ := os.Create(filepath)
+    defer f.Close()
+    io.Copy(f, file)
+
 	InitStruct.LstArticles = append(InitStruct.LstArticles, InitStruct.Section)
 	InitStruct.EditJSON(InitStruct.LstArticles)
 	InitTemp.Temp.ExecuteTemplate(w, "Add", nil)
@@ -78,7 +91,7 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 
 func Unlog(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Back.UserData.Connect = false
-	InitStruct.Back.User = InitStruct.Client{"", "",false}
+	InitStruct.Back.User = InitStruct.Client{"", "", false}
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {

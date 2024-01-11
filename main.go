@@ -1,15 +1,11 @@
 package main
 
 import (
-	r "Ymmersion2/routeur"
 	t "Ymmersion2/temps"
+	r "Ymmersion2/routeur"
 )
 
-var err error
-
 func main() {
-
 	t.InitTemplate()
 	r.InitServe()
-
 }
