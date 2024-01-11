@@ -1,4 +1,4 @@
-{{define "article"}}
+{{define "Detail"}}
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,6 +19,9 @@
                     <a href="http://localhost:8080/category?category=Minecraft" class="cat"> Minecraft </a>
                     <a href="http://localhost:8080/category?category=Geometry-Dash" class="cat"> Geometry Dash </a>
                     <a href="http://localhost:8080/category?category=GTA" class="cat"> GTA </a>
+                    {{if .User.Admin }}
+                        <a href="http://localhost:8080/admin" class="cat"> Admin </a>
+                    {{end}}
                 </div>
                 <div class="searchbar">
                     <form action="/search" method="get">
@@ -30,26 +33,28 @@
                 </div>
             </div>
         </header>
+        {{range .Articles}}
         <div class="article">
             <div class="articlehead">
                 <img src="../../assets/img/blogtest.jpg">
                 <div class="articleinfo">
                     <h1>
-                        Le plus gros drama du jeu
+                        {{.Title}}
                     </h1>
                     <div class="namedate">
-                        <p> Kevin -</p>
-                        <p> &nbsp;2016</p>
+                        <p> {{.Author}} -</p>
+                        <p> &nbsp;{{.DateCreated}}</p>
                     </div>
                 </div>
             </div>
             <p class="introduction">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quidem omnis odio optio tenetur quam repellendus dicta fuga ratione. Quo provident enim doloremque rerum consequatur voluptas? Quasi ratione in aperiam?
+                {{.Introduction}}
             </p>
             <p class="articlebody">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus odit at eligendi magnam, sint necessitatibus repellendus culpa eius facere, aliquid facilis vitae totam exercitationem beatae consequuntur. Perspiciatis quis doloremque dolore.
+                {{.Description}}
             </p>
         </div>
+        {{end}}
         <footer>
             <div class="namerights">
                 <h4> Ymmersions </h4>

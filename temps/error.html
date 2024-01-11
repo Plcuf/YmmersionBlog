@@ -18,6 +18,9 @@
                     <a href="http://localhost:8080/category?category=Minecraft" class="cat"> Minecraft </a>
                     <a href="http://localhost:8080/category?category=Geometry-Dash" class="cat"> Geometry Dash </a>
                     <a href="http://localhost:8080/category?category=GTA" class="cat"> GTA </a>
+                    {{if .User.Admin }}
+                        <a href="http://localhost:8080/admin" class="cat"> Admin </a>
+                    {{end}}
                 </div>
                 <div class="searchbar">
                     <form action="/search" method="get">

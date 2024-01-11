@@ -17,6 +17,12 @@ func InitServe() {
 	http.HandleFunc("/add", ctrl.Add)
 	http.HandleFunc("/suppr", ctrl.Suppr)
 	http.HandleFunc("/add/treatment", ctrl.InitAdd)
+	http.HandleFunc("/login", ctrl.Login)
+	http.HandleFunc("/login/treatment", ctrl.InitLogin)
+	http.HandleFunc("/inscription", ctrl.Inscription)
+	http.HandleFunc("/inscription/treatment", ctrl.InitInscription)
+
+
 
 	http.HandleFunc("/", ctrl.HandleError)
 

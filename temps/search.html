@@ -16,6 +16,9 @@
                 <a href="http://localhost:8080/category?category=Minecraft" class="cat"> Minecraft </a>
                 <a href="http://localhost:8080/category?category=Geometry-Dash" class="cat"> Geometry Dash </a>
                 <a href="http://localhost:8080/category?category=GTA" class="cat"> GTA </a>
+                {{if .User.Admin }}
+                        <a href="http://localhost:8080/admin" class="cat"> Admin </a>
+                {{end}}
             </div>
             <div class="searchbar">
                 <form action="/search" method="get">
@@ -27,9 +30,20 @@
             </div>
         </div>
     </header>
-    {{range .}}
-        {{.Title}}
-    {{end}}
+    <div class="articles">
+        {{range .Articles}}
+        <a href="http://localhost:8080/jeu/detail?id={{.Id}}" class="article">
+            <img src="../static/img/{{.Image}}">
+            <div class="articletext">
+                <h6> [{{.Category}}] {{.Title}} </h6>
+                <div class="namedate">
+                    <p> {{.Author}} -</p>
+                    <p>&nbsp;{{.DateCreated}} </p>
+                </div>
+            </div>
+        </a>
+        {{end}}
+    </div>
     <footer>
         <div class="namerights">
             <h4> Ymmersions </h4>

@@ -1,5 +1,11 @@
 package backend
 
+type Site struct {
+	Articles []Article
+	User     Client
+	UserData ClientData
+}
+
 type Article struct {
 	Title        string `json:"title"`
 	Id           int    `json:"id"`
@@ -15,10 +21,17 @@ type Client struct {
 	Name  string `json:"name"`
 	Mdp   string `json:"mdp"`
 	Admin bool   `json:"admin"`
-	Url   string
+}
+
+type ClientData struct {
+	Connect bool
+	Url     string
 }
 
 var Section Article
 var LstArticles []Article
 var User Client
+var UserData ClientData
+var LstUser []Client
+var Back Site
 var LstIDSuppr []int

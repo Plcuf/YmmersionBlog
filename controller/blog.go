@@ -23,7 +23,9 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 	for _, i := range lstId {
 		Recommandation = append(Recommandation, InitStruct.LstArticles[i])
 	}
-	InitTemp.Temp.ExecuteTemplate(w, "index", Recommandation)
+	InitStruct.UserData.Url = r.URL.String()
+	InitStruct.Back.Articles = Recommandation
+	InitTemp.Temp.ExecuteTemplate(w, "index", InitStruct.Back)
 }
 
 func Detail(w http.ResponseWriter, r *http.Request) {
@@ -43,7 +45,9 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
-	InitTemp.Temp.ExecuteTemplate(w, "Detail", InitStruct.Section)
+	InitStruct.UserData.Url = r.URL.String()
+	InitStruct.Back.Articles = []InitStruct.Article{InitStruct.Section}
+	InitTemp.Temp.ExecuteTemplate(w, "Detail", InitStruct.Back)
 }
 
 func Category(w http.ResponseWriter, r *http.Request) {
@@ -54,7 +58,9 @@ func Category(w http.ResponseWriter, r *http.Request) {
 	}
 	queryCat := r.URL.Query().Get("category")
 	lstart := InitStruct.LstCategory(queryCat)
-	InitTemp.Temp.ExecuteTemplate(w, "Category", lstart)
+	InitStruct.Back.Articles = lstart
+	InitStruct.UserData.Url = r.URL.String()
+	InitTemp.Temp.ExecuteTemplate(w, "Category", InitStruct.Back)
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
@@ -70,15 +76,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 			lstSearch = append(lstSearch, c)
 		}
 	}
-	InitTemp.Temp.ExecuteTemplate(w, "Search", lstSearch)
-}
-
-func InitAdd(w http.ResponseWriter, r *http.Request) {
-	// InitStruct.Articles.Titre := r.FormValue("titre")
-	// InitStruct.Articles.Description := r.FormValue("Description")
-	// InitStruct.Articles.Author := r.FormValue("Author")
-	// InitStruct.Articles.Image := r.FormValue("Image")
-	// InitStruct.Articles.DateCreated := r.FormValue("DateCreated")
-	// InitStruct.lstArticles = append(lstArticles, InitStruct.Articles)
-
+	InitStruct.UserData.Url = r.URL.String()
+	InitStruct.Back.Articles = lstSearch
+	InitTemp.Temp.ExecuteTemplate(w, "Search", InitStruct.Back)
 }
