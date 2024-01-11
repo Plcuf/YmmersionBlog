@@ -101,13 +101,13 @@
     },
     {
         "category": "Geometry-Dash",
-        "id": 10,
-        "title": "dd",
-        "description": "bb",
-        "introduction": "b",
-        "author": "",
+        "id": 11,
+        "title": "Comment les créateurs de la communauté façonnent Geometry Dash",
+        "description": "dd",
+        "introduction": "Un regard approfondi sur la communauté créative derrière le jeu Geometry Dash, comment les créateurs de niveaux transforment le jeu en une expérience artistique grâce à des designs complexes synchronisés sur la musique. Profils de certains des meilleurs créateurs comme Riot, Viprin et plus encore. Leur impact sur l'évolution du gameplay et de la popularité du jeu.",
+        "author": "Ayfri",
         "date_created": "2024-01-08",
-        "image": ""
+        "image": "gdpierre.jpg"
     },
     {
         "category": "Geometry-Dash",
@@ -131,7 +131,7 @@
     },
     {
         "category": "GTA",
-        "id": 12,
+        "id": 21,
         "title": "zizi",
         "description": "bb",
         "introduction": "b",
@@ -141,7 +141,7 @@
     },
     {
         "category": "GTA",
-        "id": 13,
+        "id": 22,
         "title": "ziiziman",
         "description": "bb",
         "introduction": "b",
@@ -151,7 +151,7 @@
     },
     {
         "category": "GTA",
-        "id": 141,
+        "id": 23,
         "title": "aahh",
         "description": "bb",
         "introduction": "b",
@@ -161,7 +161,7 @@
     },
     {
         "category": "GTA",
-        "id": 15,
+        "id": 24,
         "title": "dsc",
         "description": "bb",
         "introduction": "b",
@@ -171,7 +171,7 @@
     },
     {
         "category": "GTA",
-        "id": 16,
+        "id": 25,
         "title": "sdc",
         "description": "bb",
         "introduction": "b",
