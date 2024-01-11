@@ -12,6 +12,7 @@
     <body>
         <header>
             <div class="title">
+                <i class="fa-solid fa-pen-fancy fa-2xl"></i>
                 <h1> Ymmersions </h1>
             </div>
             <div class="divider">
@@ -34,7 +35,11 @@
                 {{if .UserData.Connect}}
                     
                 {{else}}
-                    <a href="http://localhost:8080/login" class="cat"> Connexion </a>
+                <div class="connect">
+                    <a href="http://localhost:8080/login" class="cat">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </div>
                 {{end}}
             </div>
         </header>
