@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// Fonction pour modifié le JSON
 func EditJSON(ModifiedArticle []Article) {
 
 	modifiedJSON, errMarshal := json.Marshal(ModifiedArticle)
@@ -17,7 +18,7 @@ func EditJSON(ModifiedArticle []Article) {
 	}
 
 	// Écrire le JSON modifié dans le fichier
-	err := os.WriteFile("database/bdd.json", modifiedJSON, 0644)
+	err := os.WriteFile("JSON/bdd.json", modifiedJSON, 0644)
 	if err != nil {
 		fmt.Println("Erreur lors de l'écriture du fichier JSON modifié:", err)
 		return
@@ -25,8 +26,9 @@ func EditJSON(ModifiedArticle []Article) {
 
 }
 
+// Fonction pour mettre le JSON dans une struct
 func ReadJSON() ([]Article, error) {
-	jsonFile, err := os.ReadFile("database/bdd.json")
+	jsonFile, err := os.ReadFile("JSON/bdd.json")
 	if err != nil {
 		fmt.Println("Error reading", err.Error())
 	}
@@ -35,6 +37,7 @@ func ReadJSON() ([]Article, error) {
 	return jsonData, err
 }
 
+// Fait une liste de dix nombre aléatoire de la taille de la liste
 func NbAleatoire(Liste []Article) []int {
 	liste := make([]int, 0, 10)
 	for len(liste) < 10 {
@@ -52,15 +55,7 @@ func NbAleatoire(Liste []Article) []int {
 	return liste
 }
 
-func IsInList(lst []string, s string) bool { // on regarde si une lettre est dans la liste ou pas
-	for _, c := range lst {
-		if string(c) == s {
-			return true
-		}
-	}
-	return false
-}
-
+// Retoune une liste de blogs de catégorie précise
 func LstCategory(category string) []Article {
 	var lst []Article
 	for _, c := range LstArticles {
@@ -71,10 +66,12 @@ func LstCategory(category string) []Article {
 	return lst
 }
 
+// Fonction pour rechercher
 func Search(word string, s string) bool {
 	return strings.Contains(strings.ToLower(word), strings.ToLower(s))
 }
 
+// Fonction pour savoir si l'id existe déjà
 func IdAlreadyExists(nb int) bool {
 	for i := 0; i < len(LstArticles); i++ {
 		if LstArticles[i].Id == nb {
@@ -84,6 +81,7 @@ func IdAlreadyExists(nb int) bool {
 	return false
 }
 
+// Fonction pour générer un Id disponible
 func GenerateID() int {
 	if !IdAlreadyExists(len(LstArticles) + 1) {
 		return len(LstArticles) + 1
@@ -97,4 +95,3 @@ func GenerateID() int {
 		return t
 	}
 }
-
