@@ -14,6 +14,7 @@ import (
 )
 
 func Admin(w http.ResponseWriter, r *http.Request) {
+
 	if !InitStruct.User.Admin {
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}
@@ -78,7 +79,7 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 
 func Unlog(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Back.UserData.Connect = false
-	InitStruct.Back.User = InitStruct.Client{"", "",false}
+	InitStruct.Back.User = InitStruct.Client{"", "", false}
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
