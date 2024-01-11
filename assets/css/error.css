@@ -273,3 +273,14 @@ footer {
     font-size:50px;
 }
 
+header .logo {
+    width: 8vw;
+    margin-left: 3vw;
+    margin-right: 2vw;
+    filter: invert(1) hue-rotate(227deg) contrast(5);
+}
+
+.connect p {
+    font-family: sanchez;
+    margin-right: 1vw;
+}

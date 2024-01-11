@@ -8,7 +8,9 @@ import (
 )
 
 func InitServe() {
-	//Création des routes pour chaque pages du site
+	/*Initialisation des routes
+	http.HandleFunc("Route actuel, fonction activé")
+	Lorsque on se situe sur une route la fonction associé va s'activé */
 	http.HandleFunc("/index", ctrl.Accueil)
 	http.HandleFunc("/jeu/detail", ctrl.Detail)
 	http.HandleFunc("/category", ctrl.Category)
@@ -28,7 +30,7 @@ func InitServe() {
 	//renvoie sur la page d'erreur si la route n'est pas trouvée
 	http.HandleFunc("/", ctrl.HandleError)
 
-	//Lien des templates a charger
+	//Pour relier les assets(img/fonts/css) aux templates
 	rootDoc, _ := os.Getwd()
 	fileserver := http.FileServer(http.Dir(rootDoc + "/assets"))
 	http.Handle("/static/", http.StripPrefix("/static/", fileserver))

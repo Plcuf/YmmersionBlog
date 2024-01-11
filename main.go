@@ -1,15 +1,11 @@
 package main
 
 import (
-	r "Ymmersion2/routeur"
-	t "Ymmersion2/temps"
+	r "Ymmersion2/routeur" //Route vers mes routes
+	t "Ymmersion2/temps"   //Route vers mes templates
 )
 
-var err error
-
 func main() {
-
-	t.InitTemplate()
-	r.InitServe()
-
+	t.InitTemplate() //Initialise mes templates
+	r.InitServe()    //Initialise mes routes / assets et lance le serveur
 }

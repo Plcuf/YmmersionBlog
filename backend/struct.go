@@ -1,5 +1,7 @@
 package backend
 
+import "html/template"
+
 type Site struct {
 	Articles []Article
 	User     Client
@@ -7,14 +9,14 @@ type Site struct {
 }
 
 type Article struct {
-	Title        string `json:"title"`
-	Id           int    `json:"id"`
-	Description  string `json:"description"`
-	Category     string `json:"category"`
-	Author       string `json:"author"`
-	Introduction string `json:"introduction"`
-	DateCreated  string `json:"date_created"`
-	Image        string `json:"image"`
+	Title        string        `json:"title"`
+	Id           int           `json:"id"`
+	Description  template.HTML `json:"description"`
+	Category     string        `json:"category"`
+	Author       string        `json:"author"`
+	Introduction template.HTML `json:"introduction"`
+	DateCreated  string        `json:"date_created"`
+	Image        string        `json:"image"`
 }
 
 type Client struct {

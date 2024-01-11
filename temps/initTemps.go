@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// Variable global que l'on appelle quand on veut touché aux templates(ex: ExecuteTemplate)
 var Temp *template.Template
 
 func InitTemplate() {
