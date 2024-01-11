@@ -14,7 +14,7 @@
             <div class="ticat">
                 <div class="title">
                     <i class="fa-solid fa-pen-fancy fa-2xl"></i>
-                    <h1> Ymmersions </h1>
+                    <h1> <a href="/index"> GBlog </a> </h1>
                 </div>
                 <div class="categories">
                 <a href="http://localhost:8080/category?category=Minecraft" class="cat"> Minecraft </a>
@@ -37,15 +37,15 @@
                 
                 {{if .UserData.Connect}}
                     <div class="connect">
-                        <i class="fa-solid fa-user"></i>
+                        <p> {{.User.Name}} </p>
+                        <a href="http://localhost:8080/unlog" class="cat"> <i class="fa-solid fa-power-off fa-xl"></i> </a>
                     </div>
-                    <a href="http://localhost:8080/unlog"></a>
                 {{else}}
                     <div class="connect">
-                    <a href="http://localhost:8080/login" class="cat">
-                        <i class="fa-solid fa-user fa-xl"></i>
-                    </a>
-                </div>
+                        <a href="http://localhost:8080/login" class="cat">
+                            <i class="fa-solid fa-user fa-xl"></i>
+                        </a>
+                    </div>
                 {{end}}
             </div>
         </header>

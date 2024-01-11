@@ -5,6 +5,11 @@ body {
     justify-content: space-between;
     align-items: center;
     height: auto;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 @font-face {
@@ -26,16 +31,48 @@ header {
     color: #f9f6f6;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     border-bottom: 2px solid #ff1030;
 }
 
-.searchbar {
+header h1 a {
+    color: #F6F6F6;
+}
+
+header .title {
     display: flex;
-    justify-content: center;
-    margin-left: 10vh;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-right: 10vw;
+}
+
+header .title i {
+    margin-left: 3vw;
+    margin-right: 1vw;
+}
+
+header .ticat {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.searchbar form {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-left: 10vw;
+}
+
+.connect {
+    margin-right: 2vw;
+    margin-left: 3vw;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .searchbar input {
@@ -46,14 +83,9 @@ header {
     color: #313638;
 }
 
-.searchbar input:focus {
-    border-color: crimson;
-}
-
 .divider {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    flex-flow: row;
     align-items: center;
 }
 
@@ -61,7 +93,7 @@ header {
     color: #9b9fa0;
     text-decoration: none;
     margin-left: 1vh;
-    margin-right: 1vh;
+    margin-right: 2vh;
     transition: .5s;
 }
 
