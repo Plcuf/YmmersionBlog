@@ -46,9 +46,7 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	InitStruct.UserData.Url = r.URL.String()
-	InitStruct.Section.Description = InitStruct.Replace(InitStruct.Section.Description)
 	InitStruct.Back.Articles = []InitStruct.Article{InitStruct.Section}
-	fmt.Println(InitStruct.Back.Articles[0].Category)
 	InitTemp.Temp.ExecuteTemplate(w, "Detail", InitStruct.Back)
 }
 

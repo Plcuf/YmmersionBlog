@@ -98,7 +98,3 @@ func GenerateID() int {
 	}
 }
 
-func Replace(input string) string {
-	output := strings.Replace(input, "\n", "<br>", -1)
-	return output
-}

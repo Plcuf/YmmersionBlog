@@ -7,6 +7,8 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"html/template"
+	"io"
 	"net/http"
 	"os"
 	"strconv"
@@ -49,22 +51,22 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Section.Category = r.FormValue("category")
 	InitStruct.Section.Title = r.FormValue("titre")
 	InitStruct.Section.Id = InitStruct.GenerateID()
-	InitStruct.Section.Description = r.FormValue("contains")
+	InitStruct.Section.Description = template.HTML(r.FormValue("contains"))
 	InitStruct.Section.Author = r.FormValue("Author")
 	InitStruct.Section.Introduction = r.FormValue("Introduction")
 	InitStruct.Section.DateCreated = time.Now().Format("2006-01-02")
 
 	file, handler, err := r.FormFile("Image")
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    defer file.Close()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer file.Close()
 
-    filepath := "./assets/images/" + handler.Filename
-    f, _ := os.Create(filepath)
-    defer f.Close()
-    io.Copy(f, file)
+	filepath := "./assets/img/" + handler.Filename
+	f, _ := os.Create(filepath)
+	defer f.Close()
+	io.Copy(f, file)
 
 	InitStruct.LstArticles = append(InitStruct.LstArticles, InitStruct.Section)
 	InitStruct.EditJSON(InitStruct.LstArticles)
@@ -89,9 +91,11 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Unlog(w http.ResponseWriter, r *http.Request) {
+func Unlog(w http.ResponseWriter, r *http.Request) {//func marche pas
 	InitStruct.Back.UserData.Connect = false
 	InitStruct.Back.User = InitStruct.Client{"", "", false}
+	// InitStruct.Back.UserData.Url a la place de /index
+	http.Redirect(w, r,"/index" , http.StatusMovedPermanently)
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
@@ -124,7 +128,6 @@ func InitLogin(w http.ResponseWriter, r *http.Request) {
 	for _, c := range InitStruct.LstUser {
 		if InitStruct.User.Name == c.Name {
 			if InitStruct.User.Mdp == c.Mdp {
-				fmt.Println(InitStruct.UserData)
 				InitStruct.User.Admin = c.Admin
 				InitStruct.UserData.Connect = true
 				InitStruct.Back.UserData = InitStruct.UserData
