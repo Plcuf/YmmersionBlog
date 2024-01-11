@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/search.css">
     <title>Recherche</title>
 </head>
 <body>
@@ -45,6 +46,7 @@
                 </div>
             {{end}}
         </div>
+        <h2>{{.UserData.Connect}}</h2>
     </header>
     <div class="articles">
         {{range .Articles}}
@@ -66,7 +68,8 @@
             <p> © 2024 Ymmersions. Tous droits réservés. </p>
         </div>
         <div class="links">
-            <a href="#">
+            <a href="/mention"> Mentions légales</a>
+            <a href="/explication">
                 Page d'Explications    
             </a>
             <p>
