@@ -212,10 +212,18 @@ footer {
     max-width: 15vw;
 }
 
-.article .introduction {
+
+p.introduction {
     margin-top: 5vh;
     margin-bottom: 5vh;
     font-style: italic;
+    font-size: 1.1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p.articlebody {
+    font-size: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header .logo {
