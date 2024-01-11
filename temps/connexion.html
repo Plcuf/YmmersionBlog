@@ -49,7 +49,6 @@
             </div>
         </header>
         <main>
-            <a href="{{.UserData.Url}}" class="fermer"> fermer </a>
             <div class="content-container">
                 <div class="form-container">
                     <h2 class="form-title">Se connecter</h2>
@@ -58,19 +57,20 @@
                             <label for="Nom" class="form-label">Nom d'utilisateur:</label>
                             <input type="text" id="Nom" name="Nom" class="form-input"autofocus required>
                         </div>
-        
+                        
                         <div class="form-group">
                             <label for="Mdp" class="form-label">Mot de passe:</label>
                             <input type="password" id="Mdp" name="Mdp" class="form-input" required>
                         </div>
-        
+                        
                         <div class="form-group">
                             <input type="submit" class="form-button" value="Se connecter">
                         </div>
                     </form>
                 </div>
             </div>
-            <a href="http://localhost:8080/inscription" class="inscription"> inscription </a>
+            <a href="http://localhost:8080/inscription" class="inscription"> inscription </a><br><br>
+            <a href="{{.UserData.Url}}" class="fermer"> fermer </a>
         </main>
         <footer>
             <div class="namerights">
