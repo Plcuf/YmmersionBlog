@@ -49,16 +49,20 @@
     </header>
     <div class="articles">
         {{range .Articles}}
-        <a href="http://localhost:8080/jeu/detail?id={{.Id}}" class="article">
-            <img src="../static/img/{{.Image}}">
-            <div class="articletext">
-                <h6> [{{.Category}}] {{.Title}} </h6>
-                <div class="namedate">
-                    <p> {{.Author}} -</p>
-                    <p>&nbsp;{{.DateCreated}} </p>
-                </div>
-            </div>
-        </a>
+            {{if ne .Title "Nothing"}}
+                <a href="http://localhost:8080/jeu/detail?id={{.Id}}" class="article">
+                    <img src="../static/img/{{.Image}}">
+                    <div class="articletext">
+                        <h6> [{{.Category}}] {{.Title}} </h6>
+                        <div class="namedate">
+                            <p> {{.Author}} -</p>
+                            <p>&nbsp;{{.DateCreated}} </p>
+                        </div>
+                    </div>
+                </a>
+            {{else}}
+                <p  class="nothing">Aucun résultat trouvé suite à votre recherche</p>
+            {{end}}
         {{end}}
     </div>
     <footer>

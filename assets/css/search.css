@@ -223,3 +223,10 @@ footer {
 a.article:hover {
     transform: scale(1.05, 1.01) ;
 }
+
+p.nothing{
+    font-size: 25px;
+    color: #F6F6F6;
+    margin-right: 1vh;
+    margin-top: 15vh;
+}
