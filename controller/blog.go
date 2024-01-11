@@ -52,7 +52,6 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 	}
 	InitStruct.UserData.Url = r.URL.String()
 	InitStruct.Back.Articles = []InitStruct.Article{InitStruct.Section}
-	fmt.Println(InitStruct.Back.Articles[0].Category)
 	//execution du template Detail.html
 	InitTemp.Temp.ExecuteTemplate(w, "Detail", InitStruct.Back)
 }

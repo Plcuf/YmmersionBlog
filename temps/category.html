@@ -53,8 +53,16 @@
             <div class="banner">
                 <img src="../static/img/{{.Category}}.png" alt="geometry dash logo">
                 <div class="gameinfo">
-                    <h1> {{.Category}} </h1>  
+                    <h1> {{.Category}} </h1> 
+                    {{if eq .Category "Geometry-Dash"}} 
                     <p> 2013 </p>
+                    {{end}}
+                    {{if eq .Category "Minecraft"}}
+                    <p>2009</p>
+                    {{end}}
+                    {{if eq .Category "GTA"}}
+                    <p>1969</p>
+                    {{end}}
                 </div>
             </div>
             {{break}}
