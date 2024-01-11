@@ -22,7 +22,7 @@ func Admin(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error encodage ", err.Error())
 		os.Exit(1)
 	}
-	
+
 	InitTemp.Temp.ExecuteTemplate(w, "Admin", InitStruct.Back)
 }
 
@@ -30,7 +30,7 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	if !InitStruct.User.Admin {
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}
-	
+
 	InitTemp.Temp.ExecuteTemplate(w, "Add", nil)
 }
 
@@ -76,12 +76,19 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func Unlog(w http.ResponseWriter, r *http.Request) {
+	InitStruct.Back.UserData.Connect = false
+	InitStruct.Back.User = InitStruct.Client{"", "",false}
+}
+
 func Login(w http.ResponseWriter, r *http.Request) {
+	InitStruct.Back.UserData = InitStruct.UserData
 	InitTemp.Temp.ExecuteTemplate(w, "Login", InitStruct.Back)
 }
 
 func Inscription(w http.ResponseWriter, r *http.Request) {
-	InitTemp.Temp.ExecuteTemplate(w, "inscription", nil)
+	InitStruct.Back.UserData = InitStruct.UserData
+	InitTemp.Temp.ExecuteTemplate(w, "inscription", InitStruct.Back)
 }
 
 func InitLogin(w http.ResponseWriter, r *http.Request) {
@@ -143,7 +150,7 @@ func InitInscription(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 		}
-	} 
+	}
 
 	InitStruct.LstUser = append(InitStruct.LstUser, InitStruct.User)
 

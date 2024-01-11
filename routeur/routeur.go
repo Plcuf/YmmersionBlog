@@ -21,7 +21,7 @@ func InitServe() {
 	http.HandleFunc("/login/treatment", ctrl.InitLogin)
 	http.HandleFunc("/inscription", ctrl.Inscription)
 	http.HandleFunc("/inscription/treatment", ctrl.InitInscription)
-
+	http.HandleFunc("/unlog", ctrl.Unlog)
 
 
 	http.HandleFunc("/", ctrl.HandleError)
