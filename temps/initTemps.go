@@ -9,6 +9,7 @@ import (
 var Temp *template.Template
 
 func InitTemplate() {
+	//Sert a initié les templates, si non, renvoie une erreur
 	temp, errTemp := template.ParseGlob("./temps/*.html")
 	if errTemp != nil {
 		fmt.Printf("Oupss une erreur lié au Templates : %v", errTemp.Error())

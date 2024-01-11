@@ -16,6 +16,7 @@ import (
 )
 
 func Admin(w http.ResponseWriter, r *http.Request) {
+
 	if !InitStruct.User.Admin {
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}

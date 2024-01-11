@@ -12,6 +12,7 @@ import (
 var err error
 
 func Accueil(w http.ResponseWriter, r *http.Request) {
+	//Page d'acceuil avec les recommandations aléatoires
 	var lstId []int
 	var Recommandation []InitStruct.Article
 	InitStruct.LstArticles, err = InitStruct.ReadJSON()
@@ -19,21 +20,25 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error encodage ", err.Error())
 		os.Exit(1)
 	}
+	//crée 10 chiffre de 0 au nombre d'articles dispo sur le site et les affiche dans la page d'accueil
 	lstId = InitStruct.NbAleatoire(InitStruct.LstArticles)
 	for _, i := range lstId {
 		Recommandation = append(Recommandation, InitStruct.LstArticles[i])
 	}
 	InitStruct.UserData.Url = r.URL.String()
 	InitStruct.Back.Articles = Recommandation
+	//execution du templates acceuil.html
 	InitTemp.Temp.ExecuteTemplate(w, "index", InitStruct.Back)
 }
 
 func Detail(w http.ResponseWriter, r *http.Request) {
+	//prend les datas du json et renvoie un message d'erreur si c'est impossible
 	InitStruct.LstArticles, err = InitStruct.ReadJSON()
 	if err != nil {
 		fmt.Println("Error encodage ", err.Error())
 		os.Exit(1)
 	}
+	//prend l'id d'un article dans le json
 	queryID, errId := strconv.Atoi(r.URL.Query().Get("id"))
 	if errId != nil {
 		fmt.Println("Error ID ", errId.Error())
@@ -47,10 +52,13 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 	}
 	InitStruct.UserData.Url = r.URL.String()
 	InitStruct.Back.Articles = []InitStruct.Article{InitStruct.Section}
+	fmt.Println(InitStruct.Back.Articles[0].Category)
+	//execution du template Detail.html
 	InitTemp.Temp.ExecuteTemplate(w, "Detail", InitStruct.Back)
 }
 
 func Category(w http.ResponseWriter, r *http.Request) {
+	//recupere les categories des data json.
 	InitStruct.LstArticles, err = InitStruct.ReadJSON()
 	if err != nil {
 		fmt.Println("Error encodage ", err.Error())
@@ -60,10 +68,12 @@ func Category(w http.ResponseWriter, r *http.Request) {
 	lstart := InitStruct.LstCategory(queryCat)
 	InitStruct.Back.Articles = lstart
 	InitStruct.UserData.Url = r.URL.String()
+	//execute le temple Category.html
 	InitTemp.Temp.ExecuteTemplate(w, "Category", InitStruct.Back)
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
+	//Prend le titre des articles enregistré dans le json
 	InitStruct.LstArticles, err = InitStruct.ReadJSON()
 	if err != nil {
 		fmt.Println("Error encodage ", err.Error())
@@ -78,5 +88,16 @@ func Search(w http.ResponseWriter, r *http.Request) {
 	}
 	InitStruct.UserData.Url = r.URL.String()
 	InitStruct.Back.Articles = lstSearch
+	//execute le template Search
 	InitTemp.Temp.ExecuteTemplate(w, "Search", InitStruct.Back)
+}
+
+func Explication(w http.ResponseWriter, r *http.Request) {
+
+	InitTemp.Temp.ExecuteTemplate(w, "explication", InitStruct.Back)
+}
+
+func Mention(w http.ResponseWriter, r *http.Request) {
+
+	InitTemp.Temp.ExecuteTemplate(w, "mention", InitStruct.Back)
 }

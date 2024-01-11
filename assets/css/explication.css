@@ -1,10 +1,13 @@
 body {
+    color:white;
+    font-family:Arial;
     background-color: #22252A;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
     height: auto;
+    margin-bottom:10%;
     text-decoration: none;
 }
 
@@ -28,7 +31,7 @@ header {
     width: 100%;
     height: 13%;
     background-color: #18191B;
-    color: #f6f6f6;
+    color: #f9f6f6;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -184,8 +187,6 @@ footer {
     justify-content: flex-start;
     align-items: center;
     border-radius: 0px 10px 10px 0px;
-    transition: 1s;
-
 }
 
 .article img {
@@ -220,6 +221,16 @@ footer {
     color: #9b9fa0;
 }
 
-a.article:hover {
-    transform: scale(1.05, 1.01) ;
+.text {
+    color:white;
+    margin-top:10%;
+    font-family:Arial;
+    margin-left:15px;
+    
+}   
+
+.image {
+    width:80vh;
+
+    
 }
