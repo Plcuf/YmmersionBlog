@@ -5,6 +5,11 @@ body {
     justify-content: space-between;
     align-items: center;
     height: auto;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 @font-face {
@@ -30,6 +35,10 @@ header {
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     border-bottom: 2px solid #ff1030;
+}
+
+header h1 a {
+    color: #F6F6F6;
 }
 
 header .title {
@@ -60,6 +69,10 @@ header .ticat {
 .connect {
     margin-right: 2vw;
     margin-left: 3vw;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .searchbar input {
@@ -80,7 +93,7 @@ header .ticat {
     color: #9b9fa0;
     text-decoration: none;
     margin-left: 1vh;
-    margin-right: 1vh;
+    margin-right: 2vh;
     transition: .5s;
 }
 
