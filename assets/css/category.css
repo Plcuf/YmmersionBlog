@@ -177,6 +177,7 @@ header .cat:hover {
     justify-content: space-between;
     align-items: center;
     border-radius: 0px 10px 10px 0px;
+    transition: 1s;
 }
 
 .article img {
@@ -255,4 +256,8 @@ footer {
 .links a:hover {
     color: #ff1030;
     text-shadow: 0 0 5px #ff1030;
+}
+
+div.articles>a.article:hover {
+    transform: scale(1.05, 1.01);
 }
