@@ -32,8 +32,12 @@
                         </button>
                     </form>
                 </div>
+                
                 {{if .UserData.Connect}}
-                    
+                    <div class="connect">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <a href="http://localhost:8080/unlog"></a>
                 {{else}}
                 <div class="connect">
                     <a href="http://localhost:8080/login" class="cat">
