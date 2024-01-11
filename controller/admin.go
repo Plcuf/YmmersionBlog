@@ -77,11 +77,13 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
+	InitStruct.Back.UserData = InitStruct.UserData
 	InitTemp.Temp.ExecuteTemplate(w, "Login", InitStruct.Back)
 }
 
 func Inscription(w http.ResponseWriter, r *http.Request) {
-	InitTemp.Temp.ExecuteTemplate(w, "inscription", nil)
+	InitStruct.Back.UserData = InitStruct.UserData
+	InitTemp.Temp.ExecuteTemplate(w, "inscription", InitStruct.Back)
 }
 
 func InitLogin(w http.ResponseWriter, r *http.Request) {
