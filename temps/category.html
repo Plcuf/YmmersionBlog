@@ -49,14 +49,16 @@
             </div>
         </header>
         <div class="banner">
-            <img src="../static/img/GeometryDashLogo.png" alt="geometry dash logo">
+            {{range .Articles}}
+            <img src="../static/img/{{.Category}}.png" alt="geometry dash logo">
             <div class="gameinfo">
-                {{range .Articles}}
+                
                 <h1> {{.Category}} </h1>
                 {{break}}
-                {{end}}
+                
                 <p> 2013 </p>
             </div>
+            {{end}}
         </div>
         <div class="articles">
             {{range .Articles}}
