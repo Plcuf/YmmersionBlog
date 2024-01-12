@@ -55,7 +55,7 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Section.Id = InitStruct.GenerateID() //Je génére un id pas utilisé
 	InitStruct.Section.Description = template.HTML(r.FormValue("contains"))
 	InitStruct.Section.Author = r.FormValue("Author")
-	InitStruct.Section.Introduction = r.FormValue("Introduction")
+	InitStruct.Section.Introduction = template.HTML(r.FormValue("Introduction"))
 	InitStruct.Section.DateCreated = time.Now().Format("2006-01-02")
 	//Prend les données ne dépassant cette taille (pout l'image)
 	err := r.ParseMultipartForm(10 << 20)
