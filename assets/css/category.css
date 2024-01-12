@@ -274,3 +274,21 @@ div.articles>a.article:hover {
     font-family: sanchez;
     margin-right: 1vw;
 }
+
+.add {
+    margin-top: 5vh;
+    padding: 1vh;
+    background-color: #4cff10;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #F6F6F6;
+    border-radius: 35px;
+}
+
+.suppr {
+    margin-bottom: 5vh;
+    padding: 1vh;
+    background-color: #ff1030;
+    font-family:Arial, Helvetica, sans-serif;
+    color: #F6F6F6;
+    border-radius: 35px;
+}
