@@ -61,7 +61,7 @@
                         <p>&nbsp;{{.DateCreated}} </p>
                     </div>
                 </div>
-                <a href="http://localhost:8080/suppr?id={{.Id}}" class="suppr">Supprimer <i class="fa-solid fa-trash"></i></a>
+                <a href="http://localhost:8080/suppr?id={{.Id}}" id="suppr" class="suppr">Supprimer <i class="fa-solid fa-trash"></i></a>
             </a>
             {{end}}
         </div>
@@ -80,18 +80,15 @@
                 </p>
             </div>
         </footer>
-        <!-- <script>
-            document.getElementById('ajoute_article').addEventListener('submit', function (event) {
-                // Empêche le formulaire de se soumettre normalement
-                event.preventDefault();
-    
-                // Code pour traiter le téléchargement de l'image (à adapter en fonction de votre logique)
-                // ...
-    
-                // Affiche le message de confirmation
-                document.getElementById('confirmation-message').style.display = 'block';
-            });
-        </script> -->
+        <script>
+            function afficherAlerte() {
+                console.log("ezd")
+                alert("Vous avez cliqué sur le lien !");
+            }
+            console.log("zfijzncijzfrn")
+            var lien = document.getElementById("suppr");
+            lien.addEventListener("click", afficherAlerte);
+        </script>
     </body>
 </html>
 {{end}}

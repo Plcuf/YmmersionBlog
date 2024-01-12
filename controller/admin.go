@@ -19,7 +19,6 @@ var err error
 
 // Fonction pour les admins
 func Admin(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(InitStruct.Back.User)
 	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 		return
@@ -121,7 +120,6 @@ func unset() {
 
 // Fonction pour se déconnecter
 func Unlog(w http.ResponseWriter, r *http.Request) { //func marche pas
-	fmt.Println(" ================================================ >>>>>>>> Unlog")
 	unset()
 	// InitStruct.Back.UserData.Url a la place de /index
 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
@@ -129,7 +127,6 @@ func Unlog(w http.ResponseWriter, r *http.Request) { //func marche pas
 
 // Fonction pour se connecter
 func Login(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(" ================================================ >>>>>>>> Login")
 	InitStruct.Back.UserData = InitStruct.UserData
 	InitTemp.Temp.ExecuteTemplate(w, "Login", InitStruct.Back)
 }
