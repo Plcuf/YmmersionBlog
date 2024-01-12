@@ -242,3 +242,9 @@ header .logo {
     font-family: sanchez;
     margin-right: 1vw;
 }
+
+.article img {
+    object-fit: cover;
+    width: 10vw;
+    height: 15vh;
+}
