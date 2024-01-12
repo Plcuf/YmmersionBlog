@@ -13,7 +13,7 @@
         <header>
             <div class="ticat">
                 <div class="title">
-                    <img src="../static/img/logo.png" class="logo">
+                    <img src="../static/img/logo.png" alt="logo" class="logo">
                     <h1> <a href="/index"> GBlog </a> </h1>
                 </div>
                 <div class="categories">
@@ -53,7 +53,7 @@
             <a href="http://localhost:8080/add" class="add">Ajouter un article <i class="fa-solid fa-pen"></i></a>
             {{range .Articles}}
             <a href="http://localhost:8080/jeu/detail?id={{.Id}}" class="article">
-                <img class="img" src="../static/img/{{.Image}}">
+                <img class="img" src="../static/img/{{.Image}}" alt="photo description">
                 <div class="articletext">
                     <h6> [{{.Category}}] {{.Title}} </h6>
                     <div class="namedate">

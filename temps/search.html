@@ -11,7 +11,7 @@
     <header>
         <div class="ticat">
             <div class="title">
-                <img src="../static/img/logo.png" class="logo">
+                <img src="../static/img/logo.png" alt="logo" class="logo">
                 <h1> <a href="/index"> GBlog </a> </h1>
             </div>
             <div class="categories">
@@ -51,7 +51,7 @@
         {{range .Articles}}
             {{if ne .Title "Nothing"}}
                 <a href="http://localhost:8080/jeu/detail?id={{.Id}}" class="article">
-                    <img src="../static/img/{{.Image}}">
+                    <img src="../static/img/{{.Image}}" alt="Photo Description">
                     <div class="articletext">
                         <h6> [{{.Category}}] {{.Title}} </h6>
                         <div class="namedate">

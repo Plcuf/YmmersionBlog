@@ -13,7 +13,7 @@
         <header>
             <div class="ticat">
                 <div class="title">
-                    <img src="../static/img/logo.png" class="logo">
+                    <img src="../static/img/logo.png" alt="logo" class="logo">
                     <h1> <a href="/index"> GBlog </a> </h1>
                 </div>
                 <div class="categories">
@@ -51,7 +51,7 @@
         </header>
         {{range .Articles}}
             <div class="banner">
-                <img src="../static/img/{{.Category}}.png" alt="geometry dash logo">
+                <img src="../static/img/{{.Category}}.png" alt="Photo jeu">
                 <div class="gameinfo">
                     <h1> {{.Category}} </h1> 
                     {{if eq .Category "Geometry-Dash"}} 
@@ -71,7 +71,7 @@
         <div class="articles">
             {{range .Articles}}
                 <a href="http://localhost:8080/jeu/detail?id={{.Id}}" class="article">
-                    <img src="../static/img/{{.Image}}">
+                    <img src="../static/img/{{.Image}}" alt="Photo description">
                     <div class="articletext">
                         <h6> {{.Title}} </h6>
                         <div class="namedate">
