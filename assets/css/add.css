@@ -373,6 +373,9 @@ input{
     position: relative;
 }
 
+.bouton:hover {
+    background-color: #F6F6F6;
+}
 
 #contains{
     height: 30vh;
