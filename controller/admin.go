@@ -19,7 +19,6 @@ var err error
 
 // Fonction pour les admins
 func Admin(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("admin", InitStruct.Back.User)
 	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}
@@ -33,7 +32,6 @@ func Admin(w http.ResponseWriter, r *http.Request) {
 
 // Fonction pour ajouter un blog
 func Add(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("add", InitStruct.Back.User.Admin)
 	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 	}
@@ -57,7 +55,7 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Section.Id = InitStruct.GenerateID() //Je génére un id pas utilisé
 	InitStruct.Section.Description = template.HTML(r.FormValue("contains"))
 	InitStruct.Section.Author = r.FormValue("Author")
-	InitStruct.Section.Introduction = r.FormValue("Introduction")
+	InitStruct.Section.Introduction = template.HTML(r.FormValue("Introduction"))
 	InitStruct.Section.DateCreated = time.Now().Format("2006-01-02")
 	//Prend les données ne dépassant cette taille (pout l'image)
 	err := r.ParseMultipartForm(10 << 20)
@@ -72,7 +70,7 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer file.Close()
-
+	InitStruct.Section.Image = handler.Filename
 	filepath := "./assets/img/" + handler.Filename //Chemin où mettre le fichier
 	f, _ := os.Create(filepath)
 	defer f.Close()
@@ -99,7 +97,6 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error ID ", err.Error())
 		os.Exit(1)
 	}
-	fmt.Println("ajnda")
 	queryID--
 	for _, c := range InitStruct.LstArticles {
 		if c.Id == queryID {
@@ -156,7 +153,6 @@ func InitLogin(w http.ResponseWriter, r *http.Request) {
 				InitStruct.UserData.Connect = true //Le connecte
 				InitStruct.Back.UserData = InitStruct.UserData
 				InitStruct.Back.User = c //Lui met ses droits
-				fmt.Println("damin", InitStruct.Back.UserData.Url)
 				http.Redirect(w, r, InitStruct.Back.UserData.Url, http.StatusMovedPermanently)
 				return
 			}

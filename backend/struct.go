@@ -14,7 +14,7 @@ type Article struct {
 	Description  template.HTML `json:"description"`
 	Category     string        `json:"category"`
 	Author       string        `json:"author"`
-	Introduction string        `json:"introduction"`
+	Introduction template.HTML `json:"introduction"`
 	DateCreated  string        `json:"date_created"`
 	Image        string        `json:"image"`
 }
