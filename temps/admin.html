@@ -61,7 +61,7 @@
                         <p>&nbsp;{{.DateCreated}} </p>
                     </div>
                 </div>
-                <a href="http://localhost:8080/suppr?id={{.Id}}" id="suppr" class="suppr">Supprimer <i class="fa-solid fa-trash"></i></a>
+                <a href="http://localhost:8080/suppr?id={{.Id}}" class="suppr">Supprimer <i class="fa-solid fa-trash"></i></a>
             </a>
             {{end}}
         </div>
@@ -82,13 +82,15 @@
         </footer>
         <script>
             function afficherAlerte() {
-                console.log("ezd")
-                alert("Vous avez cliqué sur le lien !");
+                alert("Voulez-vous vraiment supprimer cet article?");
             }
-            console.log("zfijzncijzfrn")
-            var lien = document.getElementById("suppr");
-            lien.addEventListener("click", afficherAlerte);
+        
+            var liens = document.querySelectorAll(".suppr");
+            liens.forEach(function(lien) {
+                lien.addEventListener("click", afficherAlerte);
+            });
         </script>
+        
     </body>
 </html>
 {{end}}
