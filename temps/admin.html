@@ -50,7 +50,7 @@
             </div>
         </header>
         <div class="articles">
-            <a href="http://localhost:8080/add">Ajoute un article</a>
+            <a href="http://localhost:8080/add" class="add">Ajouter un article <i class="fa-solid fa-pen"></i></a>
             {{range .Articles}}
             <a href="http://localhost:8080/jeu/detail?id={{.Id}}" class="article">
                 <img class="img" src="../static/img/{{.Image}}">
@@ -61,7 +61,7 @@
                         <p>&nbsp;{{.DateCreated}} </p>
                     </div>
                 </div>
-                <a href="http://localhost:8080/suppr?id={{.Id}}">suppr</a>
+                <a href="http://localhost:8080/suppr?id={{.Id}}" class="suppr">Supprimer <i class="fa-solid fa-trash"></i></a>
             </a>
             {{end}}
         </div>
@@ -80,6 +80,18 @@
                 </p>
             </div>
         </footer>
+        <!-- <script>
+            document.getElementById('ajoute_article').addEventListener('submit', function (event) {
+                // Empêche le formulaire de se soumettre normalement
+                event.preventDefault();
+    
+                // Code pour traiter le téléchargement de l'image (à adapter en fonction de votre logique)
+                // ...
+    
+                // Affiche le message de confirmation
+                document.getElementById('confirmation-message').style.display = 'block';
+            });
+        </script> -->
     </body>
 </html>
 {{end}}

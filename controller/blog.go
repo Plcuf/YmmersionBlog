@@ -27,6 +27,8 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 	InitStruct.UserData.Url = r.URL.String() //Pour savoir où je me situe
 	InitStruct.Back.Articles = Recommandation
 	//execution du templates index.html
+	fmt.Println(InitStruct.Back.UserData.Connect, "USERDATA connect")
+	fmt.Println(InitStruct.Back.User, "USER")
 	InitTemp.Temp.ExecuteTemplate(w, "index", InitStruct.Back)
 }
 

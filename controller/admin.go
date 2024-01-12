@@ -19,8 +19,10 @@ var err error
 
 // Fonction pour les admins
 func Admin(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(InitStruct.Back.User)
 	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
+		return
 	}
 	InitStruct.Back.Articles, err = InitStruct.ReadJSON() //Met le fichier JSON dans ma struct
 	if err != nil {
@@ -34,14 +36,16 @@ func Admin(w http.ResponseWriter, r *http.Request) {
 func Add(w http.ResponseWriter, r *http.Request) {
 	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
+		return
 	}
-	InitTemp.Temp.ExecuteTemplate(w, "Add", nil)
+	InitTemp.Temp.ExecuteTemplate(w, "Add", InitStruct.Back)
 }
 
 // Fonction treatment de l'ajout de blog
 func InitAdd(w http.ResponseWriter, r *http.Request) {
 	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
+		return
 	}
 	InitStruct.LstArticles, err = InitStruct.ReadJSON() //Met le fichier JSON dans ma struct
 	if err != nil {
@@ -86,6 +90,7 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 func Suppr(w http.ResponseWriter, r *http.Request) {
 	if !InitStruct.Back.User.Admin { //Securisation de la route
 		http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
+		return
 	}
 	InitStruct.LstArticles, err = InitStruct.ReadJSON() //Met le fichier JSON dans ma struct
 	if err != nil {
@@ -109,16 +114,22 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/admin", http.StatusMovedPermanently)
 }
 
-// Fonction pour se déconnecter
-func Unlog(w http.ResponseWriter, r *http.Request) { //func marche pas
+func unset() {
 	InitStruct.Back.UserData.Connect = false
 	InitStruct.Back.User = InitStruct.Client{"", "", false}
+}
+
+// Fonction pour se déconnecter
+func Unlog(w http.ResponseWriter, r *http.Request) { //func marche pas
+	fmt.Println(" ================================================ >>>>>>>> Unlog")
+	unset()
 	// InitStruct.Back.UserData.Url a la place de /index
 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
 }
 
 // Fonction pour se connecter
 func Login(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(" ================================================ >>>>>>>> Login")
 	InitStruct.Back.UserData = InitStruct.UserData
 	InitTemp.Temp.ExecuteTemplate(w, "Login", InitStruct.Back)
 }
