@@ -114,16 +114,22 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/admin", http.StatusMovedPermanently)
 }
 
-// Fonction pour se déconnecter
-func Unlog(w http.ResponseWriter, r *http.Request) { //func marche pas
+func unset() {
 	InitStruct.Back.UserData.Connect = false
 	InitStruct.Back.User = InitStruct.Client{"", "", false}
+}
+
+// Fonction pour se déconnecter
+func Unlog(w http.ResponseWriter, r *http.Request) { //func marche pas
+	fmt.Println(" ================================================ >>>>>>>> Unlog")
+	unset()
 	// InitStruct.Back.UserData.Url a la place de /index
 	http.Redirect(w, r, "/index", http.StatusMovedPermanently)
 }
 
 // Fonction pour se connecter
 func Login(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(" ================================================ >>>>>>>> Login")
 	InitStruct.Back.UserData = InitStruct.UserData
 	InitTemp.Temp.ExecuteTemplate(w, "Login", InitStruct.Back)
 }
