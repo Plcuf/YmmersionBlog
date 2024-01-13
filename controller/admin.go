@@ -3,12 +3,9 @@ package controller
 import (
 	InitStruct "Ymmersion2/backend"
 	InitTemp "Ymmersion2/temps"
-	"crypto/sha256"
-	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"html/template"
-	"io"
 	"net/http"
 	"os"
 	"strconv"
@@ -60,25 +57,7 @@ func InitAdd(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Section.Author = r.FormValue("Author")
 	InitStruct.Section.Introduction = template.HTML(r.FormValue("Introduction"))
 	InitStruct.Section.DateCreated = time.Now().Format("2006-01-02")
-	//Prend les données ne dépassant cette taille (pout l'image)
-	err := r.ParseMultipartForm(10 << 20)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	file, handler, errFile := r.FormFile("Image") //Récupère le fichier image
-	if errFile != nil {
-		http.Error(w, errFile.Error(), http.StatusInternalServerError)
-		return
-	}
-	defer file.Close()
-	InitStruct.Section.Image = handler.Filename
-	filepath := "./assets/img/" + handler.Filename //Chemin où mettre le fichier
-	f, _ := os.Create(filepath)
-	defer f.Close()
-	io.Copy(f, file) //Met l'image au chemin donnée
-	//je ne met pas dans ma struct
+	InitStruct.Section.Image = InitStruct.InitImg(w, r) //Je sauvegarde l'image dans mon dossier et return le nom du fichier
 
 	InitStruct.LstArticles = append(InitStruct.LstArticles, InitStruct.Section)
 	InitStruct.EditJSON(InitStruct.LstArticles) //Met les données dans le JSON
@@ -96,15 +75,18 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error encodage ", err.Error())
 		os.Exit(1)
 	}
-	queryID, err := strconv.Atoi(r.URL.Query().Get("id")) //Récupére l'Id donné dans le Query string et le met en int
-	if err != nil {
-		fmt.Println("Error ID ", err.Error())
+
+	queryID, errId := strconv.Atoi(r.URL.Query().Get("id")) //Récupére l'Id donné dans le Query string et le met en int
+	if errId != nil {
+		fmt.Println("Error ID ", errId.Error())
 		os.Exit(1)
 	}
-	queryID--
+
+	queryID-- //Pour que l'index commence à 0
 	for _, c := range InitStruct.LstArticles {
 		if c.Id == queryID {
 			InitStruct.LstArticles = append(InitStruct.LstArticles[:queryID], InitStruct.LstArticles[queryID+1:]...) //Supprime de la liste des blogs
+			queryID++
 			InitStruct.LstIDSuppr = append(InitStruct.LstIDSuppr, queryID)
 			break
 		}
@@ -117,7 +99,6 @@ func Suppr(w http.ResponseWriter, r *http.Request) {
 func Unlog(w http.ResponseWriter, r *http.Request) {
 	InitStruct.Back.UserData.Connect = false
 	InitStruct.Back.User = InitStruct.Client{"", "", false}
-	// InitStruct.Back.UserData.Url a la place de /index
 	http.Redirect(w, r, InitStruct.UserData.Url, http.StatusMovedPermanently)
 }
 
@@ -136,20 +117,7 @@ func Inscription(w http.ResponseWriter, r *http.Request) {
 // Fonction treatment pour se connecter
 func InitLogin(w http.ResponseWriter, r *http.Request) {
 	InitStruct.User.Name = r.FormValue("Nom")
-	InitStruct.User.Mdp = r.FormValue("Mdp")        //Récupére les données de l'utilisateur
-	jsonFile, err := os.ReadFile("JSON/login.json") //Récupére les données du JSON
-	if err != nil {
-		fmt.Println("Error reading", err.Error())
-	}
-	err = json.Unmarshal(jsonFile, &InitStruct.LstUser) //Met dans ma struct
-	if err != nil {
-		fmt.Println("Error encodage ", err.Error())
-		os.Exit(1)
-	}
-	hasher := sha256.New()
-	hasher.Write([]byte(InitStruct.User.Mdp))
-	hashedPassword := hex.EncodeToString(hasher.Sum(nil))
-	InitStruct.User.Mdp = hashedPassword //Scrypte le mdp
+	InitStruct.User.Mdp = InitStruct.MdpCrypt(r.FormValue("Mdp")) //Récupére les données de l'utilisateur
 
 	for _, c := range InitStruct.LstUser {
 		if InitStruct.User.Name == c.Name {
@@ -169,22 +137,8 @@ func InitLogin(w http.ResponseWriter, r *http.Request) {
 // Fonction treatment pour se connecter
 func InitInscription(w http.ResponseWriter, r *http.Request) {
 	InitStruct.User.Name = r.FormValue("Nom")
-	InitStruct.User.Mdp = r.FormValue("Mdp") //Récupére les données de l'utilisateur
+	InitStruct.User.Mdp = InitStruct.MdpCrypt(r.FormValue("Mdp")) //Récupére les données de l'utilisateur
 	InitStruct.User.Admin = false
-
-	jsonFile, err := os.ReadFile("JSON/login.json") //Récupére les données du JSON
-	if err != nil {
-		fmt.Println("Error reading", err.Error())
-	}
-	err = json.Unmarshal(jsonFile, &InitStruct.LstUser) //Met dans ma struct
-	if err != nil {
-		fmt.Println("Error encodage ", err.Error())
-		os.Exit(1)
-	}
-	hasher := sha256.New()
-	hasher.Write([]byte(InitStruct.User.Mdp))
-	hashedPassword := hex.EncodeToString(hasher.Sum(nil))
-	InitStruct.User.Mdp = hashedPassword //Scrypte le mdp
 
 	for _, c := range InitStruct.LstUser {
 		if InitStruct.User.Name == c.Name {
@@ -209,12 +163,14 @@ func InitInscription(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Erreur lors de l'écriture du fichier JSON modifié:", err)
 		return
 	}
+
 	InitStruct.UserData.Connect = true
 	InitStruct.Back.UserData = InitStruct.UserData
 	InitStruct.Back.User = InitStruct.User
 	http.Redirect(w, r, InitStruct.Back.UserData.Url, http.StatusMovedPermanently)
 }
 
+// Fonction pour la page error 404
 func HandleError(w http.ResponseWriter, r *http.Request) {
-	InitTemp.Temp.ExecuteTemplate(w, "error", nil)
+	InitTemp.Temp.ExecuteTemplate(w, "error", InitStruct.Back)
 }

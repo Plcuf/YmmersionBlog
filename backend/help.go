@@ -1,9 +1,13 @@
 package backend
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io"
 	"math/rand"
+	"net/http"
 	"os"
 	"strings"
 )
@@ -32,6 +36,7 @@ func ReadJSON() ([]Article, error) {
 	if err != nil {
 		fmt.Println("Error reading", err.Error())
 	}
+
 	var jsonData []Article
 	err = json.Unmarshal(jsonFile, &jsonData)
 	return jsonData, err
@@ -94,4 +99,47 @@ func GenerateID() int {
 		}
 		return t
 	}
+}
+
+// Fonction pour engregistrer une image et retourne son nom
+func InitImg(w http.ResponseWriter, r *http.Request) string {
+	//Prend les données ne dépassant cette taille (pout l'image)
+	err := r.ParseMultipartForm(10 << 20)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return ""
+	}
+
+	file, handler, errFile := r.FormFile("Image") //Récupère le fichier image
+	if errFile != nil {
+		http.Error(w, errFile.Error(), http.StatusInternalServerError)
+		return ""
+	}
+	defer file.Close()
+	filepath := "./assets/img/" + handler.Filename //Chemin où mettre le fichier
+	f, _ := os.Create(filepath)
+	defer f.Close()
+	io.Copy(f, file) //Met l'image au chemin donnée
+
+	return handler.Filename
+}
+
+// Fonction pour récupèrer le mot de passe crypté
+func MdpCrypt(Mdp string) string {
+	jsonFile, err := os.ReadFile("JSON/login.json") //Récupére les données du JSON
+	if err != nil {
+		fmt.Println("Error reading", err.Error())
+		os.Exit(1)
+	}
+
+	err = json.Unmarshal(jsonFile, &LstUser) //Met dans ma struct
+	if err != nil {
+		fmt.Println("Error encodage ", err.Error())
+		os.Exit(1)
+	}
+
+	hasher := sha256.New()
+	hasher.Write([]byte(Mdp))
+	hashedPassword := hex.EncodeToString(hasher.Sum(nil))
+	return hashedPassword // mdp crypter
 }
