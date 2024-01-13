@@ -1,7 +1,7 @@
 Dans ce TP, nous avons créé un site en GOHTML avec une base de données et un espace où nous stockons les utilisateurs et cryptons les mots de passe.
 Nous avons aussi un système d'admin si vous voulez vous connecter à ce compte Identifiant : Ymmersion2 et MDP : FanDeKheir
 
-Clonez le dépôt dans votre environnement de développement intégré (IDE). Veuillez ouvrir votre terminal.
+Clonez le dépôt dans votre environnement de développement intégré (IDE) préféré. Veuillez ouvrir votre terminal.
 
 I. git clone https://github.com/Plcuf/YmmersionBlog.git
 
